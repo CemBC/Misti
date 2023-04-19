@@ -24,10 +24,11 @@ public class Board {
 
     public void display() {   //Deck class'ındaki display methodu ile aynı
         System.out.println("-THE BOARD-");
-        System.out.print("[ ");
+        System.out.print("TOP --> [ ");
         for(String a : board){
             System.out.print(a + " ");
         }
-        System.out.print("]");
+        System.out.print("] <-- BOTTOM");
+        System.out.println();
     }
 }

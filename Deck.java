@@ -33,7 +33,7 @@ public class Deck {
     public void cut() {                                     //destenin en başından rastgele belirlenen indexe kadar olan elemanları bir arraye
         Random rd = new Random(System.currentTimeMillis()); //kalanları farklı bir arraye aktarıp tam tersi sıralamayla geri assign ettim
         int card = rd.nextInt(1,52);
-        System.out.println("Sliced from card = " + card);
+        System.out.println("*Deck is cutted from card = " + card+"*");
         String[] sliced1 = Arrays.copyOfRange(deck,0,card);
         String[] sliced2 = Arrays.copyOfRange(deck,card,52);
         int p = 0;
