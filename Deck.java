@@ -46,4 +46,16 @@ public class Deck {
 
 
     }
+
+    public String getCard() {                               //Destenin en üstündeki ilk null olmayan kartı alır ve döndürür
+        String ans = "";                                    //Board.addToBoard() methodu ile kullanılacak
+        for(int i = 0 ; i < deck.length ; i++) {
+            if(deck[i] != null){
+                ans = deck[i];
+                deck[i] = null;
+                break;
+            }
+        }
+        return ans;
+    }
 }

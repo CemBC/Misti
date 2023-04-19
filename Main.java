@@ -7,10 +7,9 @@ public class Main {
         deck.display();
         deck.cut();
         deck.display();
-        board.addToBoard("String");
-        board.addToBoard("String");
+        board.addToBoard(deck.getCard());
+        board.addToBoard(deck.getCard());
         board.display();
-        board.clearBoard();
-        board.display();
+        System.out.println(board.condition());
     }
 }
