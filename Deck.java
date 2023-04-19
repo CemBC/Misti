@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.Random;
 
 public class Deck {
     private String[] deck = new String[52];
@@ -21,11 +21,7 @@ public class Deck {
         System.out.println("-THE DECK-");
         System.out.print("[");
         for(String a : deck) {
-            if(a.equals(deck[51])) {
-                System.out.print(a);
-            }else {
                 System.out.print(a + ",");
-            }
         }
         System.out.print("]");
         System.out.println();
@@ -33,5 +29,21 @@ public class Deck {
 
     public void shuffle() {
         Collections.shuffle(Arrays.asList(deck));
+    }
+    public void cut() {
+        Random rd = new Random(System.currentTimeMillis());
+        int card = rd.nextInt(1,52);
+        System.out.println("Sliced from card = " + card);
+        String[] sliced1 = Arrays.copyOfRange(deck,0,card);
+        String[] sliced2 = Arrays.copyOfRange(deck,card,52);
+        int p = 0;
+        for(String a : sliced2) {
+            deck[p++] = a;
+        }
+        for(String b : sliced1) {
+            deck[p++] = b;
+        }
+
+
     }
 }

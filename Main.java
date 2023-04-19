@@ -4,5 +4,7 @@ public class Main {
         deck.display();
         deck.shuffle();
         deck.display();
+        deck.cut();
+        deck.display();
     }
 }
