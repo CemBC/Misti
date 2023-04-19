@@ -12,4 +12,17 @@ public class Deck {
             }
         }
     }
+
+    public void display() {
+        System.out.println("-THE DECK-");
+        System.out.println("[ ");
+        for(String a : deck) {
+            if(a.equals(deck[52])) {
+                System.out.print(a);
+            }else {
+                System.out.print(a + ",");
+            }
+        }
+        System.out.print("]");
+    }
 }
