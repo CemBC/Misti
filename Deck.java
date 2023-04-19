@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Deck {
     private String[] deck = new String[52];
     private String[] suits =  {"♠","♣","♥","♦"};
@@ -15,14 +19,19 @@ public class Deck {
 
     public void display() {
         System.out.println("-THE DECK-");
-        System.out.println("[ ");
+        System.out.print("[");
         for(String a : deck) {
-            if(a.equals(deck[52])) {
+            if(a.equals(deck[51])) {
                 System.out.print(a);
             }else {
                 System.out.print(a + ",");
             }
         }
         System.out.print("]");
+        System.out.println();
+    }
+
+    public void shuffle() {
+        Collections.shuffle(Arrays.asList(deck));
     }
 }
