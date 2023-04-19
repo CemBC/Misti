@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class Expert implements  Bot{
 
-    private String[] hand;
+    private ArrayList<String> hand;  //Şimdilik ele alma ve atma olaylarına kolaylık sağlasın diye ArrayList kullandım
+                                    //duruma göre Array'e dönüştürülebilir
 
     public Expert() {
-        hand = new String[52];
+        hand = new ArrayList<String>();
     }
     @Override
     public void display() {
@@ -11,8 +14,8 @@ public class Expert implements  Bot{
     }
 
     @Override
-    public void play(int index) {
-
+    public String play(int index) {
+        return "";
     }
 
     @Override
@@ -20,7 +23,7 @@ public class Expert implements  Bot{
         return 0;
     }
 
-    public String[] getHand() {
+    public ArrayList<String> getHand() {
         return hand;
     }
 }
