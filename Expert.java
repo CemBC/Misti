@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Expert extends Bot{
+public class Expert extends Player{
     private ArrayList<String> mind;  //mind of the expert bot
     public Expert() {
         super();

@@ -1,5 +1,5 @@
 import java.util.Random;
-public class Novice extends Bot{
+public class Novice extends Player{
 
     public Novice() {
         super();

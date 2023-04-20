@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Regular extends Bot{
+public class Regular extends Player{
 
     public Regular() {
         super();
