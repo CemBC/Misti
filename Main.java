@@ -1,7 +1,11 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Deck deck = new Deck();
-        Board board = new Board();
-        Bot bot = new Bot();
+
+    }
+
+    public static void log() {   //buraya log gelecek
     }
 }
