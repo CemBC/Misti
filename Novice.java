@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Novice implements Bot{
 
@@ -11,8 +12,12 @@ public class Novice implements Bot{
         chest = new ArrayList<String>();
     }
     @Override
-    public void display() {
-        Bot.super.display();
+    public void display(int p) {
+        System.out.print("Player" + p + ": {,");
+        for(String a : hand) {
+            System.out.print(a+",");
+        }
+        System.out.print("}");
     }
 
     @Override
@@ -21,9 +26,11 @@ public class Novice implements Bot{
     }
 
     @Override
-    public int chooseACard() {
-        return 0;
+    public void addToHand(String card) {
+        hand.add(card);
     }
+
+
 
     @Override
     public void addToCache(ArrayList<String> board, boolean condition) {
@@ -34,8 +41,12 @@ public class Novice implements Bot{
         }
     }
 
-
     public ArrayList<String> getHand() {
         return hand;
+    }
+
+    public int chooseACard() {
+        Random rd = new Random(System.currentTimeMillis());
+        return rd.nextInt(0,hand.size());
     }
 }

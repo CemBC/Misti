@@ -10,8 +10,12 @@ public class Expert implements  Bot{
         chest = new ArrayList<String>();
     }
     @Override
-    public void display() {
-        Bot.super.display();
+    public void display(int p) {
+        System.out.print("Player" + p + ": {,");
+        for(String a : hand) {
+            System.out.print(a+",");
+        }
+        System.out.print("}");
     }
 
     @Override
@@ -20,9 +24,11 @@ public class Expert implements  Bot{
     }
 
     @Override
-    public int chooseACard() {
-        return 0;
+    public void addToHand(String card) {
+        hand.add(card);
     }
+
+
 
     @Override
     public void addToCache(ArrayList<String> board, boolean condition) {
@@ -32,11 +38,6 @@ public class Expert implements  Bot{
             }
         }
     }
-
-
-
-
-
     public ArrayList<String> getHand() {
         return hand;
     }
