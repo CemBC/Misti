@@ -33,7 +33,7 @@ public class Board {
     }
 
     public boolean condition() {
-        try { //Tahtaya bir kart atıldıktan sonra atılan kartın tahtayı alıp alamadığını boolean döndürür
+        try {                                           //Tahtaya bir kart atıldıktan sonra atılan kartın tahtayı alıp alamadığını boolean döndürür
             if (board.get(board.size() - 1).substring(1).equals(board.get(board.size() - 2).substring(1))) {
                 return true;                            //Bot.addtoCache() methodunda condition olarak kullanılacak
             }
