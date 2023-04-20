@@ -1,7 +1,7 @@
-import java.util.ArrayList;
+/* import java.util.ArrayList;
 import java.util.Random;
 
-public class Regular implements  Bot{
+public class Regular implements Bot {
     private ArrayList<String> hand;    //Şimdilik ele alma ve atma olaylarına kolaylık sağlasın diye ArrayList kullandım
                                         //duruma göre Array'e dönüştürülebilir
     private ArrayList<String> chest;
@@ -37,7 +37,7 @@ public class Regular implements  Bot{
     public void addToCache(ArrayList<String> board, boolean condition) {
         if(condition) {
             for (String a : board) {
-                hand.add(a);
+                chest.add(a);
             }
         }
     }
@@ -62,4 +62,33 @@ public class Regular implements  Bot{
         Random rd = new Random(System.currentTimeMillis());
         return rd.nextInt(0,hand.size());
     }
+}  */
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Regular extends Bot{
+
+    public Regular() {
+        super();
+    }
+
+    public int chooseACard(ArrayList<String> board) {
+        for(String a : hand) {
+            if(a.substring(1).equals(board.get(board.size()-1).substring(1))){
+                return hand.indexOf(a);
+            }
+        }
+        for(String a : hand) {
+            if(a.substring(1).equals("J")){
+                if(board.size() > 3) {
+                    return hand.indexOf(a);
+                }
+            }
+        }
+
+        Random rd = new Random(System.currentTimeMillis());
+        return rd.nextInt(0,hand.size());
+    }
+
 }

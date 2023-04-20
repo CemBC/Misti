@@ -1,9 +1,11 @@
-import java.util.ArrayList;
 import java.util.Random;
 
-public class Novice implements Bot{
+/* import java.util.ArrayList;
+import java.util.Random;
 
-    private ArrayList<String> hand;   //Şimdilik ele alma ve atma olaylarına kolaylık sağlasın diye ArrayList kullandım
+public class Novice implements Bot {
+
+    protected static ArrayList<String> hand;   //Şimdilik ele alma ve atma olaylarına kolaylık sağlasın diye ArrayList kullandım
                                        //duruma göre Array'e dönüştürülebilir
 
     private ArrayList<String> chest;
@@ -33,13 +35,13 @@ public class Novice implements Bot{
 
 
     @Override
-    public void addToCache(ArrayList<String> board, boolean condition) {
-        if(condition) {
-            for (String a : board) {
-                hand.add(a);
+        public void addToCache(ArrayList<String> board, boolean condition) {
+            if(condition) {
+                for (String a : board) {
+                    chest.add(a);
+                }
             }
         }
-    }
 
     public ArrayList<String> getHand() {
         return hand;
@@ -49,4 +51,16 @@ public class Novice implements Bot{
         Random rd = new Random(System.currentTimeMillis());
         return rd.nextInt(0,hand.size());
     }
+} */
+public class Novice extends Bot{
+
+    public Novice() {
+        super();
+    }
+
+    public int chooseACard() {
+        Random rd = new Random(System.currentTimeMillis());
+        return rd.nextInt(0,hand.size());
+    }
+
 }
