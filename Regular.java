@@ -24,5 +24,5 @@ public class Regular extends Player{
         Random rd = new Random(System.currentTimeMillis());                   //hiçbiri olmazsa random atar
         return rd.nextInt(0,hand.size());
     }
-
+    public String level() {return "Regular";}
 }

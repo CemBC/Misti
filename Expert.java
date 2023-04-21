@@ -10,4 +10,5 @@ public class Expert extends Player{
    public int chooseACard(ArrayList<String> board) {
         return 0;
    }
+    public String level() {return "Expert";}
 }

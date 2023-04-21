@@ -54,4 +54,6 @@ public class Player{
         return hand;
     }
 
+    public String level() { return "player"; }
+
 }

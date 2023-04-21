@@ -10,4 +10,5 @@ public class Novice extends Player{
         return rd.nextInt(0,hand.size());
     }
 
+    public String level() {return "Novice";}
 }
