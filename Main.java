@@ -9,7 +9,9 @@ public class Main {
             int[] checkerLevelOfBot = null;
             //----------------------------------------------
             Deck deck = new Deck();
+            Board board = new Board();
             Scanner sc = new Scanner(System.in);
+            Player player = new Player();
             System.out.println("WELCOME TO GAME MIŞTI");
             System.out.println("Will you play as a player or just watch the cache fight huh?");
             System.out.println("Enter 'w' for watching or type something to play = ");
@@ -84,7 +86,6 @@ public class Main {
                 //------------------------------------------------------------------------------------
                 //PLAY--------------------------------------------------------------------------------
             } else {
-                Player player = new Player();
                 int sizeOfPlayer = sizeOfPlayer();
                 checkerSize = sizeOfPlayer;
                 int[] levelOfBots = new int[sizeOfPlayer - 1];
@@ -146,6 +147,34 @@ public class Main {
 
             }
             //------------------------------------------------------------------------------------
+            System.out.println("Deck is shuffling...");
+            deck.shuffle();
+            System.out.println("Cutting the deck...");
+            deck.cut();
+            System.out.println("Cards are being dealt...");
+            board.addToBoard(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+
+            if (playOrNot.equals("W") || playOrNot.equals("w")) {     //Pişti condition , log ekle , gameflow bitir , file I/O
+                while (true) {
+                    for (int i = 0; i < bots.size(); i++) {
+                        bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+                    }
+                    if (deck.isEmpty()) {
+                        break;
+                    }
+                }
+            } else {
+                while (true) {
+                    player.addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+                    for (int i = 0; i < bots.size(); i++) {
+                        bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+                    }
+                    if (deck.isEmpty()) {
+                        break;
+                    }
+                }
+
+            }
             //Control codes
             for (int a : checkerLevelOfBot) {
                 System.out.println(a);
@@ -159,7 +188,6 @@ public class Main {
             System.out.println(bots.get(0).hand.size());
 
 
-            
             break;
         }
     }

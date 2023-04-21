@@ -59,4 +59,13 @@ public class Deck {
         }
         return ans;
     }
+
+    public boolean isEmpty() {
+        for(int i = 0 ; i < deck.length ; i++) {
+            if(deck[i] != null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
