@@ -21,7 +21,7 @@ public class Player{
         return hand.get(index);
     }
 
-    public void addToHand(String a, String b , String c , String d) {
+    public void addToHand(String a, String b , String c , String d) {           //Her seferinde bir ele 4 kart ekleneceği için 4 lü  ekleme methodu
         hand.add(a);
         hand.add(b);
         hand.add(c);
@@ -36,7 +36,7 @@ public class Player{
         }
     }
 
-    public final void display(){
+    public final void display(){       //oyuncunun elini göstermesi için ayarlanmış subclasslara aktarılmasın diye final anahtar kelimesiyle yazılmış method
         int p = 0;
         System.out.println("-YOUR HAND-");
         System.out.print("[");
