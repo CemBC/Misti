@@ -162,6 +162,22 @@ public class Main {
                     if (deck.isEmpty()) {
                         break;
                     }
+                    //KOD YAZILACAK ALAN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    //-------------------
                 }
             } else {
                 while (true) {
@@ -172,6 +188,22 @@ public class Main {
                     if (deck.isEmpty()) {
                         break;
                     }
+                    //KOD YAZILACAK ALAN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    //-------------------
                 }
 
             }
