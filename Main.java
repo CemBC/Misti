@@ -155,55 +155,32 @@ public class Main {
             board.addToBoard(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
 
             if (playOrNot.equals("W") || playOrNot.equals("w")) {     //Pişti condition , log ekle , gameflow bitir , file I/O
-                while (true) {
-                    for (int i = 0; i < bots.size(); i++) {
-                        bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
-                    }
+                while (true) { //Watch
                     if (deck.isEmpty()) {
                         break;
                     }
-                    //KOD YAZILACAK ALAN
+                    for (int i = 0; i < bots.size(); i++) {
+                        bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+                    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                    //-------------------
                 }
             } else {
-                while (true) {
+                while (true) {   //Play with
+                    if (deck.isEmpty()) {
+                        break;
+                    }
                     player.addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
                     for (int i = 0; i < bots.size(); i++) {
                         bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
                     }
-                    if (deck.isEmpty()) {
-                        break;
-                    }
-                    //KOD YAZILACAK ALAN
+                    
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-                    //-------------------
                 }
 
             }

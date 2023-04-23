@@ -45,4 +45,11 @@ public class Board {
         }
         return false;
     }
+
+    public boolean mistiCondition() {                   //Condition for mişti
+        if(board.size() == 2 && board.get(board.size() - 1).substring(1).equals(board.get(board.size() - 2).substring(1))) {
+            return true;
+        }
+        return false;
+    }
 }
