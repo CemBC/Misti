@@ -9,16 +9,20 @@ public class Player{
         chest = new ArrayList<String>();
     }
 
-    public void display(int p) {                   //Bot'un elini göstermesi için bir method
-        System.out.print("Player" + p + ": {,");
+    public String display(int p) { //Bot'un elini göstermesi için bir method
+        String temp = "";
+        temp += "Bot" + p + ": {,";
         for(String a : hand) {
-            System.out.print(a+",");
+            temp += a+",";
         }
-        System.out.print("}");
+        temp += "}\t";
+        return temp;
     }
 
     public String play(int index) {             //Bot'un oynayacağı kartı döndüren bir method. Board\addToBoard() methodu için kullanılır
-        return hand.get(index);
+        String temp  = hand.get(index);
+        hand.remove(index);
+        return temp;
     }
 
     public void addToHand(String a, String b , String c , String d) {           //Her seferinde bir ele 4 kart ekleneceği için 4 lü  ekleme methodu
@@ -55,5 +59,9 @@ public class Player{
     }
 
     public String level() { return "player"; }
+
+    public int chooseACard() {
+        return 0;
+    }
 
 }

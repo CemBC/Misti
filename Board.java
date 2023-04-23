@@ -24,11 +24,11 @@ public class Board {
 
     public void display() {   //Deck class'ındaki display methodu ile aynı
         System.out.println("-THE BOARD-");
-        System.out.print("TOP --> [ ");
+        System.out.print("BOTTOM --> [ ");
         for(String a : board){
             System.out.print(a + " ");
         }
-        System.out.print("] <-- BOTTOM");
+        System.out.print("] <-- TOP");
         System.out.println();
     }
 
@@ -47,7 +47,7 @@ public class Board {
     }
 
     public boolean mistiCondition() {                   //Condition for mişti
-        if(board.size() == 2 && board.get(board.size() - 1).substring(1).equals(board.get(board.size() - 2).substring(1))) {
+        if(board.size() == 2 && board.get(0).substring(1).equals(board.get(1).substring(1))) {
             return true;
         }
         return false;

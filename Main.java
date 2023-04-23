@@ -8,6 +8,7 @@ public class Main {
             int checkerSize = 0;                //Control variables for control codes to checking game flow appropriate
             int[] checkerLevelOfBot = null;
             //----------------------------------------------
+            boolean watch = false;
             Deck deck = new Deck();
             Board board = new Board();
             Scanner sc = new Scanner(System.in);
@@ -17,8 +18,32 @@ public class Main {
             System.out.println("Enter 'w' for watching or type something to play = ");
             String playOrNot = sc.nextLine();
             ArrayList<Player> bots = new ArrayList<Player>();
-            //WATCH--------------------------------------------------------------------------------------
-            if (playOrNot.equals("W") || playOrNot.equals("w")) {
+            if(playOrNot.equals("W") || playOrNot.equals("w")) {
+                watch = true;
+            }
+
+            int sizeOfPlayer = sizeOfPlayer();
+            checkerSize = sizeOfPlayer;
+            int[] levelOfBots = new int[sizeOfPlayer];
+            levelOfPlayers(sizeOfPlayer, levelOfBots,watch);
+            checkerLevelOfBot = levelOfBots;
+            for (int i = 0; i < levelOfBots.length; i++) {
+                switch (levelOfBots[i]) {
+                    case 1:
+                        Player novice = new Novice();
+                        bots.add(novice);
+                        break;
+                    case 2:
+                        Player regular = new Regular();
+                        bots.add(regular);
+                        break;
+                    case 3:
+                        Player expert = new Expert();
+                        bots.add(expert);
+                        break;
+                }
+            }
+            /*if (watch) { //WATCH--------------------------------------------------------------------------------------
 
                 int sizeOfPlayer = sizeOfPlayer();
                 checkerSize = sizeOfPlayer;
@@ -35,34 +60,23 @@ public class Main {
                 if (flagOfLevels) {
                     switch (levelOfBots[0]) {
                         case 1:
-                            Player novice = new Novice();
-                            Player novice1 = new Novice();
-                            Player novice2 = new Novice();
-                            Player novice3 = new Novice();
-                            bots.add(novice);
-                            bots.add(novice1);
-                            bots.add(novice2);
-                            bots.add(novice3);
+                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
+                                Player novice = new Novice();
+                                bots.add(novice);
+                            }
                             break;
                         case 2:
-                            Player regular = new Regular();
-                            Player regular1 = new Regular();
-                            Player regular2 = new Regular();
-                            Player regular3 = new Regular();
-                            bots.add(regular);
-                            bots.add(regular1);
-                            bots.add(regular2);
-                            bots.add(regular3);
+                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
+                                Player regular = new Regular();
+                                bots.add(regular);
+                            }
                             break;
                         case 3:
-                            Player expert = new Expert();
-                            Player expert1 = new Expert();
-                            Player expert2 = new Expert();
-                            Player expert3 = new Expert();
-                            bots.add(expert);
-                            bots.add(expert1);
-                            bots.add(expert2);
-                            bots.add(expert3);
+                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
+                                Player expert = new Expert();
+                                bots.add(expert);
+                            }
+
                             break;
                     }
                 } else {
@@ -101,28 +115,22 @@ public class Main {
                 if (flagOfLevels) {
                     switch (levelOfBots[0]) {
                         case 1:
-                            Player novice = new Novice();
-                            Player novice1 = new Novice();
-                            Player novice2 = new Novice();
-                            bots.add(novice);
-                            bots.add(novice1);
-                            bots.add(novice2);
+                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
+                                Player novice = new Novice();
+                                bots.add(novice);
+                            }
                             break;
                         case 2:
-                            Player regular = new Regular();
-                            Player regular1 = new Regular();
-                            Player regular2 = new Regular();
-                            bots.add(regular);
-                            bots.add(regular1);
-                            bots.add(regular2);
+                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
+                                Player regular = new Regular();
+                                bots.add(regular);
+                            }
                             break;
                         case 3:
-                            Player expert = new Expert();
-                            Player expert1 = new Expert();
-                            Player expert2 = new Expert();
-                            bots.add(expert);
-                            bots.add(expert1);
-                            bots.add(expert2);
+                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
+                                Player expert = new Expert();
+                                bots.add(expert);
+                            }
                             break;
                     }
                 } else {
@@ -145,7 +153,7 @@ public class Main {
                 }
 
 
-            }
+            }  */
             String[][] log = new String[4][bots.size()];
             //------------------------------------------------------------------------------------
             System.out.println("Deck is shuffling...");
@@ -154,39 +162,56 @@ public class Main {
             deck.cut();
             System.out.println("Cards are being dealt...");
             board.addToBoard(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+            int round = 1;
+            while(true) {
 
-            if (playOrNot.equals("W") || playOrNot.equals("w")) {     //Pişti condition , log ekle , gameflow bitir , file I/O
-                while (true) { //Watch
-                    if (deck.isEmpty()) {
-                        break;
-                    }
-                    for (int i = 0; i < bots.size(); i++) {
-                        bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
-                    }
-
-
+                if (deck.isEmpty()) {
+                    break;
                 }
-            } else {
-                while (true) {   //Play with
-                    if (deck.isEmpty()) {
-                        break;
-                    }
+                if (!watch) {
                     player.addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
-                    for (int i = 0; i < bots.size(); i++) {
-                        bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
-                    }
-                    
-
-
-
-
-
-
                 }
-
+                for (int i = 0; i < bots.size(); i++) {
+                    bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+                }
+                String hands = hands(bots,player,round,watch);
+                board.display();
+                for (int j = 0; j < 4; j++){
+                    if(!watch) {                                      //oyuncuya oyunu oynatman lazım
+                        System.out.println("Enter an index to play");
+                        player.display();
+                        System.out.print("Index = ");
+                        while(true) {
+                            try {
+                                int index = sc.nextInt();
+                                if(index < 0 || index > player.getHand().size()) {
+                                    System.out.println("Please enter a valid index");
+                                }
+                                break;
+                            }catch(Exception e) {
+                                System.out.println("Please enter an integer");
+                                sc.nextLine();
+                            }
+                        }
+                    }
+                    for (int i = 0; i < bots.size(); i++) {
+                        String temp = bots.get(i).play(bots.get(i).chooseACard());
+                        board.addToBoard(temp);
+                        bots.get(i).addToChest(board.getBoard(),board.condition());
+                        if(board.mistiCondition() || board.condition()) {
+                            log[j][i] = temp+"!";
+                            board.getBoard().clear();
+                        }else{
+                            log[j][i] = temp;
+                        }
+                    }
+                }
+                log(bots,watch,hands,log);
+                round += 1;
             }
+            board.display();
             //Control codes
-            for (int a : checkerLevelOfBot) {
+            /* for (int a : checkerLevelOfBot) {
                 System.out.println(a);
             }
             System.out.println(checkerSize);
@@ -198,17 +223,37 @@ public class Main {
             System.out.println(bots.get(0).hand.size());
 
 
-            break;
+            break;  */
         }
     }
 
-    public static void log(ArrayList<Player> bots , Board board , int i) {   //buraya log gelecek
-        System.out.println("-------------");
-        board.display();
-        System.out.print("Hand " + i +" :");
+    public static void log(ArrayList<Player> bots , boolean watch,String hands,String[][] log) {   //buraya log gelecek
+        System.out.println("----------------------------------------------------");
+        System.out.println(hands);
+        for(int i = 0 ; i < 4 ; i++) {
+            System.out.print(i+1+". ");
+            for(int j = 0 ; j < bots.size() ; j++) {
+                System.out.print(log[i][j]+" ");
+            }
+            System.out.print("\n");
+        }
+        System.out.println("\n");
+        System.out.println("----------------------------------------------------");
 
 
+    }
 
+
+    public static String hands(ArrayList<Player> bots,Player player,int round,boolean watch) {
+        String temp = "";
+        temp += "Hand " + round +" :";
+        for(int i = 0 ; i < bots.size() ; i++) {
+            temp += bots.get(i).display(i);
+        }
+        if(!watch) {
+            temp += "Your hand = " + player.display(bots.size()+1);
+        }
+        return temp;
     }
 
     public static int sizeOfPlayer() {     //İki kere aynı kodu yazmamak için oyuncu sayısını seçme işini methoda aktardım iki oyun akışında da kullandım
@@ -231,8 +276,8 @@ public class Main {
 
     }
 
-    public static void levelOfPlayers(int sizeOfPlayer, int[] arr, boolean flag) {
-        if (flag == true) { //watching
+    public static void levelOfPlayers(int sizeOfPlayer, int[] arr,boolean watch) {
+        if (watch) { //watching
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter 1 - for novice\nEnter 2 - for regular\nEnter 3 - for expert");
             System.out.println("Please enter a level for each bot");
