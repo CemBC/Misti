@@ -8,7 +8,7 @@ public class Expert extends Player{
     }
 
    public int chooseACard(ArrayList<String> board) {
-        return 0;
+        return 0;    //bunu yazmamız lazım
    }
     public String level() {return "Expert";}
 }
