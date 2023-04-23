@@ -146,6 +146,7 @@ public class Main {
 
 
             }
+            String[][] log = new String[4][bots.size()];
             //------------------------------------------------------------------------------------
             System.out.println("Deck is shuffling...");
             deck.shuffle();
@@ -201,7 +202,13 @@ public class Main {
         }
     }
 
-    public static void log() {   //buraya log gelecek
+    public static void log(ArrayList<Player> bots , Board board , int i) {   //buraya log gelecek
+        System.out.println("-------------");
+        board.display();
+        System.out.print("Hand " + i +" :");
+
+
+
     }
 
     public static int sizeOfPlayer() {     //İki kere aynı kodu yazmamak için oyuncu sayısını seçme işini methoda aktardım iki oyun akışında da kullandım
