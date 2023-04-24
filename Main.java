@@ -185,6 +185,9 @@ public class Main {
                     bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
                 }
                 String hands = hands(bots, player, round, watch);
+                if(watch) {
+                    board.display();
+                }
                 for (int j = 0; j < 4; j++) {
                     if (!watch) {                            //oyuncuya oyunu oynatman lazım
                         board.display();
@@ -216,7 +219,7 @@ public class Main {
                         }
 
                         for (int i = 0; i < bots.size(); i++) {
-                            temp = bots.get(i).play(bots.get(i).chooseACard(board.getBoard()));
+                            temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
                             for(int k = 0 ; k < bots.size() ; k++) {
                                 if(bots.get(k).level().equals("Expert")){
@@ -235,7 +238,7 @@ public class Main {
                         }
                     } else {
                         for (int i = 0; i < bots.size(); i++) {
-                            String temp = bots.get(i).play(bots.get(i).chooseACard(board.getBoard()));
+                            String temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
                             for(int k = 0 ; k < bots.size() ; k++) {
                                 if(bots.get(k).level().equals("Expert")){

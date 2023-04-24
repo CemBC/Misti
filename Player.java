@@ -63,7 +63,7 @@ public class Player{
 
     public String level() { return "player"; }
 
-    public int chooseACard(ArrayList<String> board) {
+    public int chooseACard(Board board) {
         return 0;
     }
 
