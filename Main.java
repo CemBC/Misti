@@ -195,8 +195,9 @@ public class Main {
                         while (true) {
                             try {
                                 index = sc.nextInt();
-                                if (index < 0 || index > player.getHand().size()) {
+                                if (index < 0 || index > player.getHand().size()-1) {
                                     System.out.println("Please enter a valid index");
+                                    continue;
                                 }
                                 break;
                             } catch (Exception e) {
