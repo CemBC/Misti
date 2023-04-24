@@ -48,117 +48,6 @@ public class Main {
                         break;
                 }
             }
-            /*if (watch) { //WATCH--------------------------------------------------------------------------------------
-
-                int sizeOfPlayer = sizeOfPlayer();
-                checkerSize = sizeOfPlayer;
-                int[] levelOfBots = new int[sizeOfPlayer];
-                levelOfPlayers(sizeOfPlayer, levelOfBots, true);
-                checkerLevelOfBot = levelOfBots;
-                boolean flagOfLevels = true;
-                for (int i = 0; i < levelOfBots.length - 1; i++) {
-                    if (levelOfBots[i] != levelOfBots[i + 1]) {
-                        flagOfLevels = false;
-                        break;
-                    }
-                }
-                if (flagOfLevels) {
-                    switch (levelOfBots[0]) {
-                        case 1:
-                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
-                                Player novice = new Novice();
-                                bots.add(novice);
-                            }
-                            break;
-                        case 2:
-                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
-                                Player regular = new Regular();
-                                bots.add(regular);
-                            }
-                            break;
-                        case 3:
-                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
-                                Player expert = new Expert();
-                                bots.add(expert);
-                            }
-
-                            break;
-                    }
-                } else {
-                    for (int i = 0; i < levelOfBots.length; i++) {
-                        switch (levelOfBots[i]) {
-                            case 1:
-                                Player novice = new Novice();
-                                bots.add(novice);
-                                break;
-                            case 2:
-                                Player regular = new Regular();
-                                bots.add(regular);
-                                break;
-                            case 3:
-                                Player expert = new Expert();
-                                bots.add(expert);
-                                break;
-                        }
-                    }
-                }
-                //------------------------------------------------------------------------------------
-                //PLAY--------------------------------------------------------------------------------
-            } else {
-                int sizeOfPlayer = sizeOfPlayer();
-                checkerSize = sizeOfPlayer;
-                int[] levelOfBots = new int[sizeOfPlayer - 1];
-                levelOfPlayers(sizeOfPlayer, levelOfBots, false);
-                checkerLevelOfBot = levelOfBots;
-                boolean flagOfLevels = true;
-                for (int i = 0; i < levelOfBots.length - 1; i++) {
-                    if (levelOfBots[i] != levelOfBots[i + 1]) {
-                        flagOfLevels = false;
-                        break;
-                    }
-                }
-                if (flagOfLevels) {
-                    switch (levelOfBots[0]) {
-                        case 1:
-                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
-                                Player novice = new Novice();
-                                bots.add(novice);
-                            }
-                            break;
-                        case 2:
-                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
-                                Player regular = new Regular();
-                                bots.add(regular);
-                            }
-                            break;
-                        case 3:
-                            for(int i = 0 ; i < sizeOfPlayer ; i++) {
-                                Player expert = new Expert();
-                                bots.add(expert);
-                            }
-                            break;
-                    }
-                } else {
-                    for (int i = 0; i < levelOfBots.length; i++) {
-                        switch (levelOfBots[i]) {
-                            case 1:
-                                Player novice = new Novice();
-                                bots.add(novice);
-                                break;
-                            case 2:
-                                Player regular = new Regular();
-                                bots.add(regular);
-                                break;
-                            case 3:
-                                Player expert = new Expert();
-                                bots.add(expert);
-                                break;
-                        }
-                    }
-                }
-
-
-            }  */
             String[][] log;
             if (watch) {
                 log = new String[4][bots.size()];
@@ -212,8 +101,15 @@ public class Main {
                         board.addToBoard(temp);
                         player.addToChest(board.getBoard(), board.condition());
                         if (board.mistiCondition() || board.condition()) {
-                            log[j][0] = temp + "!";
-                            board.getBoard().clear();
+                            if(board.mistiCondition()) {
+                                //Buraya mişti için puan ekleme koyarsınız
+                                log[j][0] = temp + "!!";
+                                board.getBoard().clear();
+                            }else {
+                                //buraya normal kart alma için puan ekleme koyarsınız
+                                log[j][0] = temp + "!";
+                                board.getBoard().clear();
+                            }
                         } else {
                             log[j][0] = temp;
                         }
@@ -229,8 +125,15 @@ public class Main {
                             }
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
-                                log[j][i+1] = temp + "!";
-                                board.getBoard().clear();
+                                if(board.mistiCondition()){
+                                    //Buraya mişti için puan ekleme koyarsınız
+                                    log[j][i+1] = temp + "!!";
+                                    board.getBoard().clear();
+                                }else {
+                                    //buraya normal kart alma için puan ekleme koyarsınız
+                                    log[j][i + 1] = temp + "!";
+                                    board.getBoard().clear();
+                                }
                             } else {
                                 log[j][i+1] = temp;
                             }
