@@ -221,7 +221,7 @@ public class Main {
             temp += "Your hand = " + player.display(0);
         }
         for (int i = 0; i < bots.size(); i++) {
-            temp += bots.get(i).display(i+1);
+            temp += bots.get(i).display(i+1); //+ bots.get(i).getScore()+ "/";
         }
 
         return temp;
