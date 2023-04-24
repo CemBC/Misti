@@ -50,6 +50,7 @@ public class Expert extends Player {
                 }
             }
         }
+
         String temp = "";
         int max = Integer.MIN_VALUE;
         for (String a : hand) {

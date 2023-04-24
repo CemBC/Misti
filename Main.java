@@ -25,7 +25,6 @@ public class Main {
                 System.out.print("Enter your nickname please = ");
                 name = sc.nextLine();
             }
-            System.out.println(name);
             int sizeOfPlayer = sizeOfPlayer();
             checkerSize = sizeOfPlayer;
             int[] levelOfBots;
@@ -103,6 +102,12 @@ public class Main {
                         }
                         String temp = player.play(index);
                         board.addToBoard(temp);
+                        for(int k = 0 ; k < bots.size() ; k++) {
+                            if(bots.get(k).level().equals("Expert")){
+                                bots.get(k).addToMind();
+                            }
+
+                        }
                         player.addToChest(board.getBoard(), board.condition());
                         if (board.mistiCondition() || board.condition()) {
                             if(board.mistiCondition()) {
@@ -155,8 +160,15 @@ public class Main {
                             }
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
-                                log[j][i] = temp + "!";
-                                board.getBoard().clear();
+                                if(board.mistiCondition()) {
+                                    //Score ekleme kullanmanız lazım
+                                    log[j][i] = temp + "!!";
+                                    board.getBoard().clear();
+                                }else{
+                                    //Score ekleme kullanmanız lazım
+                                    log[j][i] = temp + "!";
+                                    board.getBoard().clear();
+                                }
                             } else {
                                 log[j][i] = temp;
                             }
@@ -167,6 +179,7 @@ public class Main {
                 round += 1;
             }
             board.display();
+
             //Control codes
             /* for (int a : checkerLevelOfBot) {
                 System.out.println(a);
@@ -221,7 +234,7 @@ public class Main {
             temp += "Your hand = " + player.display(0);
         }
         for (int i = 0; i < bots.size(); i++) {
-            temp += bots.get(i).display(i+1); //+ bots.get(i).getScore()+ "/";
+            temp += bots.get(i).display(i+1); //+ bots.get(i).getScore()+ "/";  
         }
 
         return temp;
