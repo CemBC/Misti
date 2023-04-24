@@ -18,10 +18,14 @@ public class Main {
             System.out.println("Enter 'w' for watching or type something to play = ");
             String playOrNot = sc.nextLine();
             ArrayList<Player> bots = new ArrayList<Player>();
+            String name = "";
             if (playOrNot.equals("W") || playOrNot.equals("w")) {
                 watch = true;
+            }else{
+                System.out.print("Enter your nickname please = ");
+                name = sc.nextLine();
             }
-
+            System.out.println(name);
             int sizeOfPlayer = sizeOfPlayer();
             checkerSize = sizeOfPlayer;
             int[] levelOfBots;
