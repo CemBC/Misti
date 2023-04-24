@@ -8,7 +8,7 @@ public class Expert extends Player{
     }
 
    public int chooseACard(ArrayList<String> board) {
-        return 0;    //bunu yazmamız lazım
+        return 0;   //burası doldurulacak
    }
 
    public void addToMind(ArrayList<String> board) {

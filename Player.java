@@ -3,8 +3,11 @@ public class Player{
     protected ArrayList<String> hand;
     protected ArrayList<String> chest;
 
+    protected int score;
+
 
     public Player() {
+        score = 0;
         hand = new ArrayList<String>();
         chest = new ArrayList<String>();
     }
@@ -62,6 +65,10 @@ public class Player{
 
     public int chooseACard(ArrayList<String> board) {
         return 0;
+    }
+
+    public void addScore(int score) {
+        this.score += score;
     }
 
     public void addToMind() {

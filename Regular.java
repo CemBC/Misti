@@ -7,7 +7,7 @@ public class Regular extends Player{
         super();
     }
 
-    public int chooseACard(ArrayList<String> board) {
+    public int chooseACard(ArrayList<String> board) {    //puana göre oynama eklenecek
         for(String a : hand) {      //Eğer elinde alabilecek bir kart varsa onu atıyor
             try {
                 if (a.substring(1).equals(board.get(board.size() - 1).substring(1))) {
