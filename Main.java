@@ -5,8 +5,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         while (true) {
-            int checkerSize = 0;                //Control variables for control codes to checking game flow appropriate
-            int[] checkerLevelOfBot = null;
             //----------------------------------------------
             boolean watch = false;
             Deck deck = new Deck();
@@ -26,7 +24,7 @@ public class Main {
                 name = sc.nextLine();
             }
             int sizeOfPlayer = sizeOfPlayer();
-            checkerSize = sizeOfPlayer;
+
             int[] levelOfBots;
             if(watch) {
                 levelOfBots = new int[sizeOfPlayer];
@@ -34,7 +32,7 @@ public class Main {
                 levelOfBots = new int[sizeOfPlayer-1];
             }
             levelOfPlayers(sizeOfPlayer, levelOfBots, watch);
-            checkerLevelOfBot = levelOfBots;
+
             for (int i = 0; i < levelOfBots.length; i++) {
                 switch (levelOfBots[i]) {
                     case 1:
@@ -180,20 +178,6 @@ public class Main {
             }
             board.display();
 
-            //Control codes
-            /* for (int a : checkerLevelOfBot) {
-                System.out.println(a);
-            }
-            System.out.println(checkerSize);
-            for (Player a : bots) {
-                System.out.println(a.level());
-            }
-            bots.get(0).addToHand("A", "B", "C", "D");
-            System.out.println(bots.get(1).hand.size());
-            System.out.println(bots.get(0).hand.size());
-
-
-            break;  */
             System.out.println("Do you want to play againg ? ");
             System.out.println("If you want to quit please enter 'q' , or keep up the game");
             String ch = sc.nextLine();
