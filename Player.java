@@ -60,8 +60,10 @@ public class Player{
 
     public String level() { return "player"; }
 
-    public int chooseACard() {
+    public int chooseACard(ArrayList<String> board) {
         return 0;
     }
 
+    public void addToMind() {
+    }
 }

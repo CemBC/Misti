@@ -10,5 +10,11 @@ public class Expert extends Player{
    public int chooseACard(ArrayList<String> board) {
         return 0;    //bunu yazmamız lazım
    }
+
+   public void addToMind(ArrayList<String> board) {
+        for(String a : board) {
+            mind.add(a);
+        }
+   }
     public String level() {return "Expert";}
 }

@@ -213,23 +213,35 @@ public class Main {
                         } else {
                             log[j][0] = temp;
                         }
-                        int p = 1;
+
                         for (int i = 0; i < bots.size(); i++) {
-                            temp = bots.get(i).play(bots.get(i).chooseACard());
+                            temp = bots.get(i).play(bots.get(i).chooseACard(board.getBoard()));
                             board.addToBoard(temp);
+                            for(int k = 0 ; k < bots.size() ; k++) {
+                                if(bots.get(k).level().equals("Expert")){
+                                    bots.get(k).addToMind();
+                                }
+
+                            }
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
-                                log[j][p] = temp + "!";
+                                log[j][i+1] = temp + "!";
                                 board.getBoard().clear();
                             } else {
-                                log[j][p] = temp;
+                                log[j][i+1] = temp;
                             }
-                            p+= 1;
+
                         }
                     } else {
                         for (int i = 0; i < bots.size(); i++) {
-                            String temp = bots.get(i).play(bots.get(i).chooseACard());
+                            String temp = bots.get(i).play(bots.get(i).chooseACard(board.getBoard()));
                             board.addToBoard(temp);
+                            for(int k = 0 ; k < bots.size() ; k++) {
+                                if(bots.get(k).level().equals("Expert")){
+                                    bots.get(k).addToMind();
+                                }
+
+                            }
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
                                 log[j][i] = temp + "!";
@@ -258,15 +270,28 @@ public class Main {
 
 
             break;  */
+            System.out.println("Do you want to play againg ? ");
+            System.out.println("If you want to quit please enter 'q' , or keep up the game");
+            String ch = sc.nextLine();
+            if(ch.equals("q")||ch.equals("Q")) {
+                System.out.println("See you then");
+                break;
+            }
         }
     }
 
     public static void log(ArrayList<Player> bots, boolean watch, String hands, String[][] log) {   //buraya log gelecek
         System.out.println("----------------------------------------------------");
         System.out.println(hands);
+        int size = -1;
+        if(watch) {
+            size = bots.size();
+        }else{
+            size = bots.size()+1;
+        }
         for (int i = 0; i < 4; i++) {
             System.out.print(i + 1 + ". ");
-            for (int j = 0; j < bots.size(); j++) {
+            for (int j = 0; j < size; j++) {
                 System.out.print(log[i][j] + " ");
             }
             System.out.print("\n");

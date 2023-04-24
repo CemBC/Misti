@@ -8,9 +8,13 @@ public class Regular extends Player{
     }
 
     public int chooseACard(ArrayList<String> board) {
-        for(String a : hand) {                                              //Eğer elinde alabilecek bir kart varsa onu atıyor
-            if(a.substring(1).equals(board.get(board.size()-1).substring(1))){
-                return hand.indexOf(a);
+        for(String a : hand) {      //Eğer elinde alabilecek bir kart varsa onu atıyor
+            try {
+                if (a.substring(1).equals(board.get(board.size() - 1).substring(1))) {
+                    return hand.indexOf(a);
+                }
+            }catch(IndexOutOfBoundsException e) {
+
             }
         }
         for(String a : hand) {                                              //eğer elinde alabilecek kart yok ama vale varsa ve tahtada 3 den fazla kart varsa
