@@ -10,7 +10,7 @@ public class Regular extends Player{
     public int chooseACard(Board boardd) {//puana göre oynama eklenecek
         ArrayList<String> board = boardd.getBoard();
 
-       /* if(score < 0 ) {       //Skor oyuna eklenince regular için kullanılacak kod
+       /* if(score <= 0 ) {       //Skor oyuna eklenince regular için kullanılacak kod
             for(String a : hand) {
                 if(!a.substring(1).equals("J")  &&  !a.substring(1).equals(board.get(board.size() - 1).substring(1))) {
                     return hand.indexOf(a);

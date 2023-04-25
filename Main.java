@@ -62,6 +62,7 @@ public class Main {
             deck.cut();
             System.out.println("Cards are being dealt...");
             board.addToBoard(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
+            minder(bots,board);
             int round = 1;
             while (true) {
 
@@ -84,7 +85,7 @@ public class Main {
                         System.out.println("Enter an index to play");
                         player.display();
                         System.out.print("Index = ");
-                        int index = -1;
+                        int index;
                         while (true) {
                             try {
                                 index = sc.nextInt();
@@ -100,12 +101,7 @@ public class Main {
                         }
                         String temp = player.play(index);
                         board.addToBoard(temp);
-                        for(int k = 0 ; k < bots.size() ; k++) {
-                            if(bots.get(k).level().equals("Expert")){
-                                bots.get(k).addToMind();
-                            }
-
-                        }
+                        minder(bots,board);
                         player.addToChest(board.getBoard(), board.condition());
                         if (board.mistiCondition() || board.condition()) {
                             if(board.mistiCondition()) {
@@ -124,12 +120,7 @@ public class Main {
                         for (int i = 0; i < bots.size(); i++) {
                             temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
-                            for(int k = 0 ; k < bots.size() ; k++) {
-                                if(bots.get(k).level().equals("Expert")){
-                                    bots.get(k).addToMind();
-                                }
-
-                            }
+                            minder(bots,board);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
                                 if(board.mistiCondition()){
@@ -150,12 +141,7 @@ public class Main {
                         for (int i = 0; i < bots.size(); i++) {
                             String temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
-                            for(int k = 0 ; k < bots.size() ; k++) {
-                                if(bots.get(k).level().equals("Expert")){
-                                    bots.get(k).addToMind();
-                                }
-
-                            }
+                            minder(bots,board);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
                                 if(board.mistiCondition()) {
@@ -191,7 +177,7 @@ public class Main {
     public static void log(ArrayList<Player> bots, boolean watch, String hands, String[][] log) {   //buraya log gelecek
         System.out.println("----------------------------------------------------");
         System.out.println(hands);
-        int size = -1;
+        int size;
         if(watch) {
             size = bots.size();
         }else{
@@ -230,12 +216,16 @@ public class Main {
         while (true) {
 
             System.out.println("Enter the size of the player. Between 2-4 = ");
-            size = sc.nextInt();
-            if (size < 2 || size > 4) {
-                System.out.println("Please enter an integer between 2-4");
-                continue;
-            } else {
+            try {
+                size = sc.nextInt();
+                if (size < 2 || size > 4) {
+                    System.out.println("Please enter an integer between 2-4");
+                    continue;
+                }
                 break;
+            }catch(Exception e) {
+                System.out.println("Please enter an integer");
+                sc.nextLine();
             }
 
 
@@ -291,5 +281,14 @@ public class Main {
             }
         }
 
+    }
+
+    public static void minder(ArrayList<Player> bots,Board board) {
+        for(int k = 0 ; k < bots.size() ; k++) {
+            if(bots.get(k).level().equals("Expert")){
+                bots.get(k).addToMind(board);
+            }
+
+        }
     }
 }

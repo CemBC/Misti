@@ -22,7 +22,7 @@ public class Player{
         return temp;
     }
 
-    public String play(int index) {             //Bot'un oynayacağı kartı döndüren bir method. Board\addToBoard() methodu için kullanılır
+    public String play(int index) { //Bot'un oynayacağı kartı döndüren bir method. Board\addToBoard() methodu için kullanılır
         String temp  = hand.get(index);
         hand.remove(index);
         return temp;
@@ -73,6 +73,6 @@ public class Player{
 
     public int getScore() { return score;}
 
-    public void addToMind() {
+    public void addToMind(Board board) {
     }
 }

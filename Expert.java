@@ -11,7 +11,7 @@ public class Expert extends Player {
 
     public int chooseACard(Board boardd) {
         ArrayList<String> board = boardd.getBoard();
-       /*if(score < 0 ) {       //Skor oyuna eklenince regular için kullanılacak kod
+       /*if(score <=  0 ) {       //Skor oyuna eklenince regular için kullanılacak kod
            for(String a : hand) {
                if(!a.substring(1).equals("J")  &&  !a.substring(1).equals(board.get(board.size() - 1).substring(1))) {
                    return hand.indexOf(a);
@@ -24,11 +24,11 @@ public class Expert extends Player {
                int c = Collections.frequency(mind,a.substring(1));
                if(c < min) {
                    if (!a.substring(1).equals("J")){
-                       if (!a.substring(1).equals("J")){
-                           min = c;
-                           temp = a;
-                       }
+
+                       min = c;
+                       temp = a;
                    }
+
 
                }
            }
@@ -56,20 +56,21 @@ public class Expert extends Player {
         for (String a : hand) {
             int c = Collections.frequency(mind, a.substring(1));
             if (c > max) {
-                if (!a.substring(1).equals("J")) {
                     max = c;
                     temp = a;
-                }
             }
         }
         return hand.indexOf(temp);
     }
 
-    public void addToMind(ArrayList<String> board) {
-        for (String a : board) {
-            mind.add(a.substring(1));
-        }
+    public void addToMind(Board boardd) {
+        ArrayList<String> board = boardd.getBoard();
+        String a = board.get(board.size() - 1);
+        mind.add(a.substring(1));
+
     }
+
+
 
     public String level() {
         return "Expert";
