@@ -16,6 +16,7 @@ public class Board {
         board.add(card2);
         board.add(card3);
         board.add(card4);
+        
     }
 
     public void clearBoard() { //bir oyuncu kartları aldığı zaman tahtayı temizler (Tahtadan ele methodunu botların kendi class'ında tanımalamayı düşünüyorum)
