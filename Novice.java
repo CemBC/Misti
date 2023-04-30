@@ -6,7 +6,7 @@ public class Novice extends Player{
         super();
     }
 
-    public int chooseACard(Board board) {                                        //random olarak kart atıyor
+    public int chooseACard(Board board/*,int score*/) {                                        //random olarak kart atıyor
         Random rd = new Random(System.currentTimeMillis());
         return rd.nextInt(0,hand.size());
     }

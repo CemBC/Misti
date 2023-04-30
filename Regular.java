@@ -7,7 +7,7 @@ public class Regular extends Player{
         super();
     }
 
-    public int chooseACard(Board boardd) {//puana göre oynama eklenecek
+    public int chooseACard(Board boardd/*,int score*/) {//puana göre oynama eklenecek
         ArrayList<String> board = boardd.getBoard();
 
        /* if(score <= 0 ) {       //Skor oyuna eklenince regular için kullanılacak kod

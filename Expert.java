@@ -9,7 +9,7 @@ public class Expert extends Player {
         mind = new ArrayList<String>();
     }
 
-    public int chooseACard(Board boardd) {
+    public int chooseACard(Board boardd/*,int score*/) {
         ArrayList<String> board = boardd.getBoard();
        /*if(score <=  0 ) {       //Skor oyuna eklenince regular için kullanılacak kod
            for(String a : hand) {
