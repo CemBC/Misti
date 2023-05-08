@@ -192,11 +192,15 @@ public class Main {
             board.display();
 
             System.out.println("Do you want to play again ? ");
-            System.out.println("If you want to quit please enter 'q' , or keep up the game");
-            String ch = sc.nextLine();
-            if (ch.equals("q") || ch.equals("Q")) {
-                System.out.println("See you then");
-                break;
+            System.out.println("If you want to quit please enter '1' , or keep up the game");
+            try {
+                int ch = sc.nextInt();
+                if (ch == 1 ) {
+                    System.out.println("See you then");
+                    break;
+                }
+            }catch(Exception e) {
+
             }
 
 
@@ -233,7 +237,7 @@ public class Main {
             temp += "Your hand = " + player.display(0);
         }
         for (int i = 0; i < bots.size(); i++) {
-            temp += bots.get(i).display(i + 1); //+ bots.get(i).getScore()+ "/";
+            temp += bots.get(i).display(0); //+ bots.get(i).getScore()+ "/";
         }
 
         return temp;

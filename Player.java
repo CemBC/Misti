@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-public class Player{
+
+public class Player {
 
     protected String name;
     protected ArrayList<String> hand;
@@ -14,26 +15,28 @@ public class Player{
         hand = new ArrayList<String>();
         chest = new ArrayList<String>();
     }
+
     public String getName() {
         return name;
     }
+
     public String display(int p) { //Bot'un elini göstermesi için bir method
         String temp = "";
         temp += name + ": {,";
-        for(String a : hand) {
-            temp += a+",";
+        for (String a : hand) {
+            temp += a + ",";
         }
         temp += "}\t";
         return temp;
     }
 
     public String play(int index) { //Bot'un oynayacağı kartı döndüren bir method. Board\addToBoard() methodu için kullanılır
-        String temp  = hand.get(index);
+        String temp = hand.get(index);
         hand.remove(index);
         return temp;
     }
 
-    public void addToHand(String a, String b , String c , String d) {           //Her seferinde bir ele 4 kart ekleneceği için 4 lü  ekleme methodu
+    public void addToHand(String a, String b, String c, String d) {           //Her seferinde bir ele 4 kart ekleneceği için 4 lü  ekleme methodu
         hand.add(a);
         hand.add(b);
         hand.add(c);
@@ -41,32 +44,35 @@ public class Player{
     }
 
     public void addToChest(ArrayList<String> board, boolean condition) {             //Tahtadan zulaya kart aktarır
-        if(condition) {
+        if (condition) {
             for (String a : board) {
                 chest.add(a);
             }
         }
     }
 
-    public final void display(){       //oyuncunun elini göstermesi için ayarlanmış subclasslara aktarılmasın diye final anahtar kelimesiyle yazılmış method
+    public final void display() {       //oyuncunun elini göstermesi için ayarlanmış subclasslara aktarılmasın diye final anahtar kelimesiyle yazılmış method
         int p = 0;
         System.out.println("-YOUR HAND-");
         System.out.print("[");
-        for(String a : hand) {
-            System.out.print(a+" ");
+        for (String a : hand) {
+            System.out.print(a + " ");
         }
         System.out.println("]");
         System.out.print(" ");
-        for(String a : hand) {
-            System.out.print(p+ "  ");
+        for (String a : hand) {
+            System.out.print(p + "  ");
             p++;
         }
     }
+
     public ArrayList<String> getHand() {
         return hand;
     }
 
-    public String level() { return "player"; }
+    public String level() {
+        return "player";
+    }
 
     public int chooseACard(Board board) {
         return 0;
@@ -76,8 +82,10 @@ public class Player{
         this.score += score;
     }
 
-    public int getScore() { return score;}
+    public int getScore() {
+        return score;
+    }
 
-    public void addToMind(Board board,boolean flag) {
+    public void addToMind(Board board, boolean flag) {
     }
 }
