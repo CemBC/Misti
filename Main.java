@@ -1,54 +1,78 @@
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        getArgs(args);
         while (true) {
             //----------------------------------------------
-            boolean watch = false;
+            boolean watch = true;
             Deck deck = new Deck();
             Board board = new Board();
             Scanner sc = new Scanner(System.in);
-            Player player = new Player();
-            System.out.println("WELCOME TO GAME MIŞTI");
-            System.out.println("Will you play as a player or just watch the cache fight huh?");
-            System.out.println("Enter 'w' for watching or type something to play = ");
-            String playOrNot = sc.nextLine();
+
             ArrayList<Player> bots = new ArrayList<Player>();
-            String name = "";
-            if (playOrNot.equals("W") || playOrNot.equals("w")) {
-                watch = true;
-            } else {
-                System.out.print("Enter your nickname please = ");
-                name = sc.nextLine();
-            }
-            int sizeOfPlayer = sizeOfPlayer();
-
-            int[] levelOfBots;
-            if (watch) {
-                levelOfBots = new int[sizeOfPlayer];
-            } else {
-                levelOfBots = new int[sizeOfPlayer - 1];
-            }
-            levelOfPlayers(sizeOfPlayer, levelOfBots, watch);
-
-            for (int i = 0; i < levelOfBots.length; i++) {
-                switch (levelOfBots[i]) {
-                    case 1:
-                        Player novice = new Novice();
-                        bots.add(novice);
-                        break;
-                    case 2:
-                        Player regular = new Regular();
-                        bots.add(regular);
-                        break;
-                    case 3:
-                        Player expert = new Expert();
-                        bots.add(expert);
-                        break;
+            for(int i = 0 ; i < args.length ; i++) {
+                if(args[i].equals("H")) {
+                    watch = false;
+                    break;
                 }
             }
+            int sizeOfPlayer = 0;
+            try {
+                sizeOfPlayer = Integer.valueOf(args[0]);
+                if (sizeOfPlayer < 2 || sizeOfPlayer > 4) {
+                    System.out.println("Invalid type of number of players");
+                    System.exit(2);
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid type of number of players");
+                System.exit(2);
+            }
+            String[][] Players = new String[sizeOfPlayer][2];
+
+            int p = 2;
+            for (int i = 0; i < Players.length; i++) {
+                Players[i][0] = args[p++];
+                Players[i][1] = args[p++];
+
+            }
+
+            Player player = new Player("");
+            for (int i = 0; i < Players.length; i++) {
+                switch (Players[i][1]) {
+                    case "E":
+                        Player expert = new Expert(Players[i][0]);
+                        bots.add(expert);
+                        break;
+                    case "R":
+                        Player regular = new Regular(Players[i][0]);
+                        bots.add(regular);
+                        break;
+                    case "N":
+                        Player novice = new Novice(Players[i][0]);
+                        bots.add(novice);
+                        break;
+                    case "H":
+                        Player human = new Player(Players[i][0]);
+                        player = human;
+                        break;
+                    default:
+                        System.out.println("Invalid type of arguments");
+                        System.exit(3);
+                }
+            }
+            for(int i = 0 ; i < Players.length ; i++) {
+                if(Players[i][0].equals("H") || Players[i][0].equals("R") || Players[i][0].equals("E") || Players[i][0].equals("N")) {
+                    System.out.println("Player's or Bot's name can not represent the level of them");
+                    System.exit(3);
+                }
+            }
+            if(Collections.frequency(List.of(args),"H") > 1) {
+                System.out.println("There can not be more than one player");
+                System.exit(4);
+            }
+
             String[][] log;
             if (watch) {
                 log = new String[4][bots.size()];
@@ -62,7 +86,7 @@ public class Main {
             deck.cut();
             System.out.println("Cards are being dealt...");
             board.addToBoard(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
-            minder(bots, board,false);
+            minder(bots, board, false);
             int round = 1;
             while (true) {
 
@@ -101,7 +125,7 @@ public class Main {
                         }
                         String temp = player.play(index);
                         board.addToBoard(temp);
-                        minder(bots, board,true);
+                        minder(bots, board, true);
                         player.addToChest(board.getBoard(), board.condition());
                         if (board.mistiCondition() || board.condition()) {
                             if (board.mistiCondition()) {
@@ -120,7 +144,7 @@ public class Main {
                         for (int i = 0; i < bots.size(); i++) {
                             temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
-                            minder(bots, board,true);
+                            minder(bots, board, true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
                                 if (board.mistiCondition()) {
@@ -141,7 +165,7 @@ public class Main {
                         for (int i = 0; i < bots.size(); i++) {
                             String temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
-                            minder(bots, board,true);
+                            minder(bots, board, true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
                                 if (board.mistiCondition()) {
@@ -159,18 +183,22 @@ public class Main {
                         }
                     }
                 }
-                log(bots, watch, hands, log);
+                if(Boolean.parseBoolean(args[args.length-1])) {
+                    log(bots, watch, hands, log);
+                }
                 round += 1;
             }
             board.display();
 
-            System.out.println("Do you want to play againg ? ");
+            System.out.println("Do you want to play again ? ");
             System.out.println("If you want to quit please enter 'q' , or keep up the game");
             String ch = sc.nextLine();
             if (ch.equals("q") || ch.equals("Q")) {
                 System.out.println("See you then");
                 break;
             }
+
+
         }
     }
 
@@ -210,88 +238,28 @@ public class Main {
         return temp;
     }
 
-    public static int sizeOfPlayer() {     //İki kere aynı kodu yazmamak için oyuncu sayısını seçme işini methoda aktardım iki oyun akışında da kullandım
-        Scanner sc = new Scanner(System.in);
-        int size = 0;
-        while (true) {
-
-            System.out.println("Enter the size of the player. Between 2-4 = ");
-            try {
-                size = sc.nextInt();
-                if (size < 2 || size > 4) {
-                    System.out.println("Please enter an integer between 2-4");
-                    continue;
-                }
-                break;
-            } catch (Exception e) {
-                System.out.println("Please enter an integer");
-                sc.nextLine();
-            }
 
 
-        }
-        return size;
-
-    }
-
-    public static void levelOfPlayers(int sizeOfPlayer, int[] arr, boolean watch) {
-        if (watch) { //watching
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Enter 1 - for novice\nEnter 2 - for regular\nEnter 3 - for expert");
-            System.out.println("Please enter a level for each bot");
-            for (int i = 0; i < sizeOfPlayer; i++) {
-                System.out.print(i + 1 + ". bot's level = ");
-                while (true) {
-                    try {
-                        int level = sc.nextInt();
-                        if (level < 1 || level > 3) {
-                            System.out.println("Please enter an integer for level of bot between 1-3");
-                            continue;
-                        } else {
-                            arr[i] = level;
-                            break;
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Please enter an integer");
-                        sc.nextLine();
-                    }
-                }
-            }
-        } else {  //playing
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Enter 1 - for novice\nEnter 2 - for regular\nEnter 3 - for expert");
-            System.out.println("Please enter a level for each bot");
-            for (int i = 0; i < sizeOfPlayer - 1; i++) {
-                System.out.print(i + 1 + ". bot's level = ");
-                while (true) {
-                    try {
-                        int level = sc.nextInt();
-                        if (level < 1 || level > 3) {
-                            System.out.println("Please enter an integer for level of bot between 1-3");
-                            continue;
-                        } else {
-                            arr[i] = level;
-                            break;
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Please enter an integer");
-                        sc.nextLine();
-                    }
-                }
-            }
-        }
-
-    }
 
     public static void minder(ArrayList<Player> bots, Board board, boolean flag) {
 
         for (int k = 0; k < bots.size(); k++) {
             if (bots.get(k).level().equals("Expert")) {
-                bots.get(k).addToMind(board,flag);
+                bots.get(k).addToMind(board, flag);
             }
 
         }
 
     }
+
+    public static void getArgs(String[] args) {
+        if (args.length < 7 || args.length != Integer.valueOf(args[0]) * 2 + 3) {
+            System.out.println("Invalid arguments");
+            System.exit(1);
+        }
+        if(!(args[args.length-1].equals("true") || args[args.length-1].equals("false") )){
+            System.out.println("Please enter the verbose type 'true' or 'false' ");
+            System.exit(1);
+        }
+    }
 }
-//Bumbe

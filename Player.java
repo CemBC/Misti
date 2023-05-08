@@ -1,20 +1,25 @@
 import java.util.ArrayList;
 public class Player{
+
+    protected String name;
     protected ArrayList<String> hand;
     protected ArrayList<String> chest;
 
     protected int score;
 
 
-    public Player() {
+    public Player(String name) {
+        this.name = name;
         score = 0;
         hand = new ArrayList<String>();
         chest = new ArrayList<String>();
     }
-
+    public String getName() {
+        return name;
+    }
     public String display(int p) { //Bot'un elini göstermesi için bir method
         String temp = "";
-        temp += "Bot" + p + ": {,";
+        temp += name + ": {,";
         for(String a : hand) {
             temp += a+",";
         }
@@ -33,7 +38,7 @@ public class Player{
         hand.add(b);
         hand.add(c);
         hand.add(d);
-    }   
+    }
 
     public void addToChest(ArrayList<String> board, boolean condition) {             //Tahtadan zulaya kart aktarır
         if(condition) {

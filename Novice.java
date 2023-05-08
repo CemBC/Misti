@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Random;
 public class Novice extends Player{
 
-    public Novice() {
-        super();
+    public Novice(String name) {
+        super(name);
     }
 
     public int chooseACard(Board board/*,int score*/) {                                        //random olarak kart atıyor

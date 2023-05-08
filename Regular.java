@@ -3,8 +3,8 @@ import java.util.Random;
 
 public class Regular extends Player{
 
-    public Regular() {
-        super();
+    public Regular(String name) {
+        super(name);
     }
 
     public int chooseACard(Board boardd/*,int score*/) {//puana göre oynama eklenecek

@@ -4,8 +4,8 @@ import java.util.Collections;
 public class Expert extends Player {
     private ArrayList<String> mind;  //mind of the expert bot
 
-    public Expert() {
-        super();
+    public Expert(String name) {
+        super(name );
         mind = new ArrayList<String>();
     }
 
@@ -56,8 +56,8 @@ public class Expert extends Player {
         for (String a : hand) {
             int c = Collections.frequency(mind, a.substring(1));
             if (c > max) {
-                    max = c;
-                    temp = a;
+                max = c;
+                temp = a;
             }
         }
         return hand.indexOf(temp);
