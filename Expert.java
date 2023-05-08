@@ -63,13 +63,18 @@ public class Expert extends Player {
         return hand.indexOf(temp);
     }
 
-    public void addToMind(Board boardd) {
-        ArrayList<String> board = boardd.getBoard();
-        String a = board.get(board.size() - 1);
-        mind.add(a.substring(1));
-
+    public void addToMind(Board boardd,boolean flag) {
+        if(flag) {
+            ArrayList<String> board = boardd.getBoard();
+            String a = board.get(board.size() - 1);
+            mind.add(a.substring(1));
+        }else{
+            ArrayList<String> board = boardd.getBoard();
+            for(int i = 0 ; i < board.size() ; i++) {
+                mind.add(board.get(i));
+            }
+        }
     }
-
 
 
     public String level() {

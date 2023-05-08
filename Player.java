@@ -73,6 +73,6 @@ public class Player{
 
     public int getScore() { return score;}
 
-    public void addToMind(Board board) {
+    public void addToMind(Board board,boolean flag) {
     }
 }

@@ -19,17 +19,17 @@ public class Main {
             String name = "";
             if (playOrNot.equals("W") || playOrNot.equals("w")) {
                 watch = true;
-            }else{
+            } else {
                 System.out.print("Enter your nickname please = ");
                 name = sc.nextLine();
             }
             int sizeOfPlayer = sizeOfPlayer();
 
             int[] levelOfBots;
-            if(watch) {
+            if (watch) {
                 levelOfBots = new int[sizeOfPlayer];
-            }else{
-                levelOfBots = new int[sizeOfPlayer-1];
+            } else {
+                levelOfBots = new int[sizeOfPlayer - 1];
             }
             levelOfPlayers(sizeOfPlayer, levelOfBots, watch);
 
@@ -62,7 +62,7 @@ public class Main {
             deck.cut();
             System.out.println("Cards are being dealt...");
             board.addToBoard(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
-            minder(bots,board);
+            minder(bots, board,false);
             int round = 1;
             while (true) {
 
@@ -76,7 +76,7 @@ public class Main {
                     bots.get(i).addToHand(deck.getACard(), deck.getACard(), deck.getACard(), deck.getACard());
                 }
                 String hands = hands(bots, player, round, watch);
-                if(watch) {
+                if (watch) {
                     board.display();
                 }
                 for (int j = 0; j < 4; j++) {
@@ -89,7 +89,7 @@ public class Main {
                         while (true) {
                             try {
                                 index = sc.nextInt();
-                                if (index < 0 || index > player.getHand().size()-1) {
+                                if (index < 0 || index > player.getHand().size() - 1) {
                                     System.out.println("Please enter a valid index");
                                     continue;
                                 }
@@ -101,14 +101,14 @@ public class Main {
                         }
                         String temp = player.play(index);
                         board.addToBoard(temp);
-                        minder(bots,board);
+                        minder(bots, board,true);
                         player.addToChest(board.getBoard(), board.condition());
                         if (board.mistiCondition() || board.condition()) {
-                            if(board.mistiCondition()) {
+                            if (board.mistiCondition()) {
                                 //Buraya mişti için puan ekleme koyarsınız
                                 log[j][0] = temp + "!!";
                                 board.getBoard().clear();
-                            }else {
+                            } else {
                                 //buraya normal kart alma için puan ekleme koyarsınız
                                 log[j][0] = temp + "!";
                                 board.getBoard().clear();
@@ -120,20 +120,20 @@ public class Main {
                         for (int i = 0; i < bots.size(); i++) {
                             temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
-                            minder(bots,board);
+                            minder(bots, board,true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
-                                if(board.mistiCondition()){
+                                if (board.mistiCondition()) {
                                     //Buraya mişti için puan ekleme koyarsınız
-                                    log[j][i+1] = temp + "!!";
+                                    log[j][i + 1] = temp + "!!";
                                     board.getBoard().clear();
-                                }else {
+                                } else {
                                     //buraya normal kart alma için puan ekleme koyarsınız
                                     log[j][i + 1] = temp + "!";
                                     board.getBoard().clear();
                                 }
                             } else {
-                                log[j][i+1] = temp;
+                                log[j][i + 1] = temp;
                             }
 
                         }
@@ -141,14 +141,14 @@ public class Main {
                         for (int i = 0; i < bots.size(); i++) {
                             String temp = bots.get(i).play(bots.get(i).chooseACard(board));
                             board.addToBoard(temp);
-                            minder(bots,board);
+                            minder(bots, board,true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
                             if (board.mistiCondition() || board.condition()) {
-                                if(board.mistiCondition()) {
+                                if (board.mistiCondition()) {
                                     //Score ekleme kullanmanız lazım
                                     log[j][i] = temp + "!!";
                                     board.getBoard().clear();
-                                }else{
+                                } else {
                                     //Score ekleme kullanmanız lazım
                                     log[j][i] = temp + "!";
                                     board.getBoard().clear();
@@ -167,7 +167,7 @@ public class Main {
             System.out.println("Do you want to play againg ? ");
             System.out.println("If you want to quit please enter 'q' , or keep up the game");
             String ch = sc.nextLine();
-            if(ch.equals("q")||ch.equals("Q")) {
+            if (ch.equals("q") || ch.equals("Q")) {
                 System.out.println("See you then");
                 break;
             }
@@ -178,10 +178,10 @@ public class Main {
         System.out.println("----------------------------------------------------");
         System.out.println(hands);
         int size;
-        if(watch) {
+        if (watch) {
             size = bots.size();
-        }else{
-            size = bots.size()+1;
+        } else {
+            size = bots.size() + 1;
         }
         for (int i = 0; i < 4; i++) {
             System.out.print(i + 1 + ". ");
@@ -204,7 +204,7 @@ public class Main {
             temp += "Your hand = " + player.display(0);
         }
         for (int i = 0; i < bots.size(); i++) {
-            temp += bots.get(i).display(i+1); //+ bots.get(i).getScore()+ "/";  
+            temp += bots.get(i).display(i + 1); //+ bots.get(i).getScore()+ "/";
         }
 
         return temp;
@@ -223,7 +223,7 @@ public class Main {
                     continue;
                 }
                 break;
-            }catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println("Please enter an integer");
                 sc.nextLine();
             }
@@ -283,12 +283,14 @@ public class Main {
 
     }
 
-    public static void minder(ArrayList<Player> bots,Board board) {
-        for(int k = 0 ; k < bots.size() ; k++) {
-            if(bots.get(k).level().equals("Expert")){
-                bots.get(k).addToMind(board);
+    public static void minder(ArrayList<Player> bots, Board board, boolean flag) {
+
+        for (int k = 0; k < bots.size(); k++) {
+            if (bots.get(k).level().equals("Expert")) {
+                bots.get(k).addToMind(board,flag);
             }
 
         }
+
     }
 }
