@@ -254,12 +254,17 @@ public class Main {
     }
 
     public static void getArgs(String[] args) {
-        if (args.length < 7 || args.length != Integer.valueOf(args[0]) * 2 + 3) {
-            System.out.println("Invalid arguments");
-            System.exit(1);
-        }
-        if(!(args[args.length-1].equals("true") || args[args.length-1].equals("false") )){
-            System.out.println("Please enter the verbose type 'true' or 'false' ");
+        try {
+            if (args.length < 7 || args.length != Integer.valueOf(args[0]) * 2 + 3) {
+                System.out.println("Invalid arguments");
+                System.exit(1);
+            }
+            if (!(args[args.length - 1].equals("true") || args[args.length - 1].equals("false"))) {
+                System.out.println("Please enter the verbose type 'true' or 'false' ");
+                System.exit(1);
+            }
+        }catch(NumberFormatException ex) {
+            System.out.println("Please enter an integer as number of players");
             System.exit(1);
         }
     }
