@@ -2,7 +2,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
+        System.out.println("Appropriate argument example:\n" + ">java -jar Misti.jar <numberOfPlayer> <FileName.txt> <PlayerName> <PreviousPlayerLevel> .... <VerboseMode>");
+        System.out.println(">java -jar Misti.jar 4 pointFile.txt Kaya H Ilker E Cem R Kutluhan N true");
         getArgs(args);
         while (true) {
             //----------------------------------------------
