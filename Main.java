@@ -5,6 +5,7 @@ public class Main {
         System.out.println("Appropriate argument example:\n" + ">java -jar Misti.jar <numberOfPlayer> <FileName.txt> <PlayerName> <PreviousPlayerLevel> .... <VerboseMode>");
         System.out.println(">java -jar Misti.jar 4 pointFile.txt Kaya H Ilker E Cem R Kutluhan N true");
         getArgs(args);
+        Value.updateValues(args[1]);
         while (true) {
             //----------------------------------------------
             boolean watch = true;

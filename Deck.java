@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Deck {
     private String[] deck = new String[52];
-    private String[] suits = {"♠", "♣", "♥", "♦"};
+    private String[] suits = {"S", "C", "H", "D"};
     private String[] faces = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"};
 
 
