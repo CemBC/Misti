@@ -2,9 +2,43 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Appropriate argument example:\n" + ">java -jar Misti.jar <numberOfPlayer> <FileName.txt> <PlayerName> <PreviousPlayerLevel> .... <VerboseMode>");
-        System.out.println(">java -jar Misti.jar 4 pointFile.txt Kaya H Ilker E Cem R Kutluhan N true");
-        getArgs(args);
+        // Appropriate argument example:\n" + ">java -jar Misti.jar <numberOfPlayer> <FileName.txt> <PlayerName> <PreviousPlayerLevel> .... <VerboseMode>
+        // java -jar Misti.jar 4 pointFile.txt Kaya H Ilker E Cem R Kutluhan N true
+        if (!args[0].matches("^[2-4]$")) {
+            System.out.println("Number of players is invalid.");
+            System.exit(1);
+        }
+        if (!Integer.toString(args.length).matches("(7|9|11)")) {
+            System.out.println("Bad argument count.");
+            System.exit(1);
+        }
+        int numOfPlayers = Integer.parseInt(args[0]);
+        ArrayList<Player> players = new ArrayList<>();
+        for(int i = 0; i<numOfPlayers;i++) {
+            String playerName = args[2+i];
+            String playerType = args[3+i];
+            if (!playerName.matches("^[a-zA-Z]{3,10}$+")) {
+                System.out.println("Name must only contain letters and between 3 to 10 characters.");
+                System.exit(1);
+            } else if (!playerType.matches("^([HNRE])$")) {
+                System.out.println("Unknown player type entered.");
+                System.exit(1);
+            }
+            switch (playerType) {
+                case "H":
+                    players.add(new Player(playerName));
+                case "N":
+                    players.add(new Novice(playerName));
+                case "R":
+                    players.add(new Regular(playerName));
+                case "E":
+                    players.add(new Expert(playerName));
+            }
+        }
+        if (!args[args.length-1].matches("^(true|false)$")) {
+            System.out.println("Verbose option is invalid.");
+            System.exit(1);
+        }
         while (true) {
             //----------------------------------------------
             boolean watch = true;
@@ -12,7 +46,7 @@ public class Main {
             Board board = new Board();
             Scanner sc = new Scanner(System.in);
 
-            ArrayList<Player> bots = new ArrayList<Player>();
+            ArrayList<Player> bots = new ArrayList<>();
             for(int i = 0 ; i < args.length ; i++) {
                 if(args[i].equals("H")) {
                     watch = false;
@@ -255,21 +289,5 @@ public class Main {
 
         }
 
-    }
-
-    public static void getArgs(String[] args) {
-        try {
-            if (args.length < 7 || args.length != Integer.valueOf(args[0]) * 2 + 3) {
-                System.out.println("Invalid arguments");
-                System.exit(1);
-            }
-            if (!(args[args.length - 1].equals("true") || args[args.length - 1].equals("false"))) {
-                System.out.println("Please enter the verbose type 'true' or 'false' ");
-                System.exit(1);
-            }
-        }catch(NumberFormatException ex) {
-            System.out.println("Please enter an integer as number of players");
-            System.exit(1);
-        }
     }
 }
