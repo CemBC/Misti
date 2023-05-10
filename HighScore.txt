@@ -1,12 +1,12 @@
 Can-47-Expert
+Can-42-Expert
 Beyazıt-41-Expert
 Cem-34-Expert
+Can-33-Expert
 Cem-30-Expert
 Cem-30-Expert
 CAN-28-Expert
 Beyazıt-26-Expert
 Cem-26-Expert
 Cem-24-Expert
-Cem-24-Expert
-Cem-20-Expert
-Cem-3-Human
+Cem-9-Novice
