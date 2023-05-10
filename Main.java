@@ -5,16 +5,15 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
-
-
         System.out.println("Appropriate argument example:\n" + ">java -jar Misti.jar <numberOfPlayer> <FileName.txt> <PlayerName> <PreviousPlayerLevel> .... <VerboseMode>");
         System.out.println(">java -jar Misti.jar 4 pointFile.txt Kaya H Ilker E Cem R Kutluhan N true");
         getArgs(args);
         Value.updateValues(args[1]);
-       // HighScore.updateHighScores();
+        HighScorer.create();
+        HighScorer.read();
+
         while (true) {
-            //HighScore.updateHighScores();
+
             //----------------------------------------------
             boolean watch = true;
             Deck deck = new Deck();
@@ -215,21 +214,15 @@ public class Main {
                 z.addScore();
                 System.out.println("  "+z.getName() + " == " + z.getScore());
             }
-
-           // TODO Kaçıncı olduğu oyuncuya bildirilebilir,şu an yalnızca dosyaya kaydediyor.
-            //  Yüksek skor yapmışsa metot 1 ile 10 arası bir sayı döndürüyor
-            //  Yüksek skor yapmamışsa metot 0 döndürüyor
-           /* if(!watch) {
-                HighScore.checkIfHighScore(player);
+            if(!watch) {
+                HighScorer.addToList(new HighScorer(player.getName(),player.getScore(),player.level()));
             }
-            for (Player z : bots) {
-                HighScore.checkIfHighScore(z);
-            } */
-
-
-
-
-
+            for(Player z : bots) {
+                HighScorer.addToList(new HighScorer(z.getName(),z.getScore(),z.level()));
+            }
+            HighScorer.sort();
+            HighScorer.updateNwrite();
+            HighScorer.read();
 
             System.out.println("Do you want to play again ? ");
             System.out.println("If you want to quit please enter '1' , or keep up the game");

@@ -67,13 +67,15 @@ public class HighScorer {
             }
         }
     }
-    public static void Read() {
+    public static void read() {
         Scanner input = null;
         try{
             input = new Scanner(Paths.get(fileName));
             System.out.println("\t\t\t-TOP 10 PLAYER-");
-            while(input.hasNextLine()){
+            int totalread = 0;
+            while(input.hasNextLine() && totalread < 10){
                 System.out.println("\t\t" + input.nextLine());
+                totalread++;
             }
         }catch (IOException e) {
             System.out.println("Something went wrong while reading file");
@@ -87,9 +89,11 @@ public class HighScorer {
         Scanner input = null;
         try{
             input = new Scanner(Paths.get(fileName));
-            while(input.hasNextLine()) {
-                String[] splitted = input.nextLine().split(" ");
+            int totalread = 0;
+            while(input.hasNextLine() && totalread < 10) {
+                String[] splitted = input.nextLine().split("-");
                 HighScorer.addToList(new HighScorer(splitted[0],Integer.valueOf(splitted[1]),splitted[2]));
+                totalread++;
             }
         }catch(IOException e) {
             System.out.println("Something went wrong while updating file");
@@ -105,7 +109,7 @@ public class HighScorer {
         try {
             output = new Formatter(fileName);
             for(HighScorer h : list) {
-                output.format("%s  %d  %s%n",h.getName(),h.getScore(),h.getLevel());
+                output.format("%s-%d-%s%n",h.getName(),h.getScore(),h.getLevel());
             }
         } catch (SecurityException e) {
             System.err.println("Write permission denied, terminating.");
@@ -116,6 +120,7 @@ public class HighScorer {
         } finally {
             if (output!=null) output.close();
         }
+        list.clear();
     }
 
     public int getScore() {
