@@ -125,7 +125,7 @@ public class HighScore {
                     }
 
                     // In case of high score file doesn't have 10 entries.
-                    if (highScores.get(10)!=null) highScores.remove(10);
+                    if (highScores.get(highScores.size()-1)!=null) highScores.remove(10);
                     return i+1;
                 }
             }
