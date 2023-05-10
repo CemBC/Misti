@@ -130,6 +130,7 @@ public class Main {
                         board.addToBoard(temp);
                         minder(bots, board, true);
                         player.addToChest(board.getBoard(), board.condition());
+                        player.addScore();
                         if (board.mistiCondition() || board.condition()) {
                             if (board.mistiCondition()) {
                                 //Buraya mişti için puan ekleme koyarsınız
@@ -149,6 +150,7 @@ public class Main {
                             board.addToBoard(temp);
                             minder(bots, board, true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
+                            bots.get(i).addScore();
                             if (board.mistiCondition() || board.condition()) {
                                 if (board.mistiCondition()) {
                                     //Buraya mişti için puan ekleme koyarsınız
@@ -170,6 +172,7 @@ public class Main {
                             board.addToBoard(temp);
                             minder(bots, board, true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
+                            bots.get(i).addScore();
                             if (board.mistiCondition() || board.condition()) {
                                 if (board.mistiCondition()) {
                                     //Score ekleme kullanmanız lazım
@@ -192,7 +195,15 @@ public class Main {
                 round += 1;
             }
             board.display(calculateBoard(board));
-
+            System.out.println("-THE FINAL SCORES-");
+            if(!watch) {
+                player.addScore();
+                System.out.println("  "+player.getName() + " == " + player.getScore());
+            }
+            for(Player z : bots){
+                z.addScore();
+                System.out.println("  "+z.getName() + " == " + z.getScore());
+            }
             System.out.println("Do you want to play again ? ");
             System.out.println("If you want to quit please enter '1' , or keep up the game");
             try {

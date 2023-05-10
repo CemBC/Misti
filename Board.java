@@ -57,6 +57,4 @@ public class Board {
         }
         return false;
     }
-
-    //public int calculateScore(ArrayList<String> score) { }
 }

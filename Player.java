@@ -30,7 +30,7 @@ public class Player {
         for (String a : hand) {
             temp += a + ",";
         }
-        temp += "}\t";
+        temp += "} Score="+ score + "\t";
         return temp;
     }
 
@@ -82,8 +82,10 @@ public class Player {
         return 0;
     }
 
-    public void addScore(int score) {
-        this.score += score;
+    public void addScore() {
+        this.score = 0;
+        for(String a : chest)
+        this.score += Value.of(a);
     }
 
     public int getScore() {
