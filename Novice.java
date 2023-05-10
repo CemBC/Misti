@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 public class Novice extends Player{
-
+    protected String expertiseLevel = "N";
     public Novice(String name) {
         super(name);
     }

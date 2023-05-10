@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Regular extends Player{
-
+    protected String expertiseLevel = "R";
     public Regular(String name) {
         super(name);
     }

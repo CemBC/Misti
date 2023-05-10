@@ -38,14 +38,13 @@ public class Value {
 
     // Can be run whenever points file is updated, in this case only at the beginning
     public static void updateValues (String fileName) {
-        System.out.println(fileName);
-        Scanner input;
+        Scanner input = null;
         try {
             input = new Scanner(Paths.get(fileName));
             while (input.hasNextLine()) {
                 String line = input.nextLine();
                 if (!line.matches("^[SCHD*][A123456789TJQK*]\\s-?\\d+$")) {
-                    System.err.println("Points file is wrongly formatted, terminating.");
+                    System.err.println("Points file is badly formatted, terminating.");
                     System.exit(1);
                 } else {
                     values.add(new Value(
@@ -60,7 +59,8 @@ public class Value {
         } catch (NumberFormatException e) {
             System.err.println("A point was too large for an int, terminating.");
             System.exit(1);
+        } finally {
+            if (input!=null) input.close();
         }
-
     }
 }
