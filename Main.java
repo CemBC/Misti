@@ -15,8 +15,8 @@ public class Main {
             Scanner sc = new Scanner(System.in);
 
             ArrayList<Player> bots = new ArrayList<Player>();
-            for(int i = 0 ; i < args.length ; i++) {
-                if(args[i].equals("H")) {
+            for (int i = 0; i < args.length; i++) {
+                if (args[i].equals("H")) {
                     watch = false;
                     break;
                 }
@@ -65,13 +65,13 @@ public class Main {
                         System.exit(3);
                 }
             }
-            for(int i = 0 ; i < Players.length ; i++) {
-                if(Players[i][0].equals("H") || Players[i][0].equals("R") || Players[i][0].equals("E") || Players[i][0].equals("N")) {
+            for (int i = 0; i < Players.length; i++) {
+                if (Players[i][0].equals("H") || Players[i][0].equals("R") || Players[i][0].equals("E") || Players[i][0].equals("N")) {
                     System.out.println("Player's or Bot's name can not represent the level of them");
                     System.exit(3);
                 }
             }
-            if(Collections.frequency(List.of(args),"H") > 1) {
+            if (Collections.frequency(List.of(args), "H") > 1) {
                 System.out.println("There can not be more than one player");
                 System.exit(4);
             }
@@ -104,11 +104,11 @@ public class Main {
                 }
                 String hands = hands(bots, player, round, watch);
                 if (watch) {
-                    board.display();
+                    board.display(calculateBoard(board));
                 }
                 for (int j = 0; j < 4; j++) {
                     if (!watch) {                            //oyuncuya oyunu oynatman lazım
-                        board.display();
+                        board.display(calculateBoard(board));
                         System.out.println("Enter an index to play");
                         player.display();
                         System.out.print("Index = ");
@@ -145,7 +145,7 @@ public class Main {
                         }
 
                         for (int i = 0; i < bots.size(); i++) {
-                            temp = bots.get(i).play(bots.get(i).chooseACard(board));
+                            temp = bots.get(i).play(bots.get(i).chooseACard(board, calculateBoard(board)));
                             board.addToBoard(temp);
                             minder(bots, board, true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
@@ -166,7 +166,7 @@ public class Main {
                         }
                     } else {
                         for (int i = 0; i < bots.size(); i++) {
-                            String temp = bots.get(i).play(bots.get(i).chooseACard(board));
+                            String temp = bots.get(i).play(bots.get(i).chooseACard(board, calculateBoard(board)));
                             board.addToBoard(temp);
                             minder(bots, board, true);
                             bots.get(i).addToChest(board.getBoard(), board.condition());
@@ -186,22 +186,22 @@ public class Main {
                         }
                     }
                 }
-                if(Boolean.parseBoolean(args[args.length-1])) {
+                if (Boolean.parseBoolean(args[args.length - 1])) {
                     log(bots, watch, hands, log);
                 }
                 round += 1;
             }
-            board.display();
+            board.display(calculateBoard(board));
 
             System.out.println("Do you want to play again ? ");
             System.out.println("If you want to quit please enter '1' , or keep up the game");
             try {
                 int ch = sc.nextInt();
-                if (ch == 1 ) {
+                if (ch == 1) {
                     System.out.println("See you then");
                     break;
                 }
-            }catch(Exception e) {
+            } catch (Exception e) {
 
             }
 
@@ -246,8 +246,6 @@ public class Main {
     }
 
 
-
-
     public static void minder(ArrayList<Player> bots, Board board, boolean flag) {
 
         for (int k = 0; k < bots.size(); k++) {
@@ -269,9 +267,19 @@ public class Main {
                 System.out.println("Please enter the verbose type 'true' or 'false' ");
                 System.exit(1);
             }
-        }catch(NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             System.out.println("Please enter an integer as number of players");
             System.exit(1);
         }
+    }
+
+
+    public static int calculateBoard(Board boardd) {
+        ArrayList<String> board = boardd.getBoard();
+        int total = 0;
+        for (String a : board) {
+            total += Value.of(a);
+        }
+        return total;
     }
 }
