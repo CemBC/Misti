@@ -35,10 +35,8 @@ public class Value {
         for (Value value : values) {
             String suit = value.getSuit();
             String cardface = value.getCardface();
-            if (card.substring(0, 1).equals(suit) || suit.equals("*")) {
-                if (card.substring(1, 2).equals(cardface) || cardface.equals("*")) {
-                    return value.getPoint();
-                }
+            if ((card.substring(0, 1).equals(suit) || suit.equals("*")) && (card.substring(1, 2).equals(cardface) || cardface.equals("*"))) {
+                return value.getPoint();
             }
         }
         return defaultValue; // In case of there being no values.
