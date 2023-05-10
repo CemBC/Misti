@@ -283,3 +283,5 @@ public class Main {
         return total;
     }
 }
+
+//hErkes aynı anda yazmamalıymış beyler

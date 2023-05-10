@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Expert extends Player {
-    protected String expertiseLevel = "E";
     private ArrayList<String> mind;  //mind of the expert bot
 
     public Expert(String name) {

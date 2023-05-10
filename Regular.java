@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Regular extends Player {
-
     public Regular(String name) {
         super(name);
     }
