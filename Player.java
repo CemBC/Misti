@@ -75,7 +75,7 @@ public class Player {
     }
 
     public String level() {
-        return "player";
+        return "Human";
     }
 
     public int chooseACard(Board board, int score) {
