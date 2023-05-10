@@ -204,6 +204,13 @@ public class Main {
                 z.addScore();
                 System.out.println("  "+z.getName() + " == " + z.getScore());
             }
+            // TODO Kaçıncı olduğu oyuncuya bildirilebilir,şu an yalnızca dosyaya kaydediyor.
+            //  Yüksek skor yapmışsa metot 1 ile 10 arası bir sayı döndürüyor
+            //  Yüksek skor yapmamışsa metot 0 döndürüyor
+            HighScore.checkIfHighScore(player);
+            for (Player z : bots) {
+                HighScore.checkIfHighScore(z);
+            }
             System.out.println("Do you want to play again ? ");
             System.out.println("If you want to quit please enter '1' , or keep up the game");
             try {
