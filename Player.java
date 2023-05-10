@@ -74,7 +74,7 @@ public class Player {
         return "player";
     }
 
-    public int chooseACard(Board board) {
+    public int chooseACard(Board board, int score) {
         return 0;
     }
 

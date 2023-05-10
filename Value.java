@@ -16,19 +16,27 @@ public class Value {
         this.point = point;
     }
 
-    public String getSuit() {return suit;}
-    public String getCardface() {return cardface;}
-    public int getPoint() {return point;}
+    public String getSuit() {
+        return suit;
+    }
+
+    public String getCardface() {
+        return cardface;
+    }
+
+    public int getPoint() {
+        return point;
+    }
 
     // How to use:
     // Value.of("S3")
     // will return 5
-    public static int of (String card) {
-        for(Value value : values) {
+    public static int of(String card) {
+        for (Value value : values) {
             String suit = value.getSuit();
             String cardface = value.getCardface();
-            if (card.substring(0,1).equals(suit) || suit.equals("*")) {
-                if (card.substring(1,2).equals(cardface) || cardface.equals("*")) {
+            if (card.substring(0, 1).equals(suit) || suit.equals("*")) {
+                if (card.substring(1, 2).equals(cardface) || cardface.equals("*")) {
                     return value.getPoint();
                 }
             }
@@ -37,7 +45,7 @@ public class Value {
     }
 
     // Can be run whenever points file is updated, in this case only at the beginning
-    public static void updateValues (String fileName) {
+    public static void updateValues(String fileName) {
         System.out.println(fileName);
         Scanner input;
         try {
@@ -49,8 +57,8 @@ public class Value {
                     System.exit(1);
                 } else {
                     values.add(new Value(
-                            line.substring(0,1), // charAt kullanılırsa char döndürüyor, String değil.
-                            line.substring(1,2),
+                            line.substring(0, 1), // charAt kullanılırsa char döndürüyor, String değil.
+                            line.substring(1, 2),
                             Integer.parseInt(line.substring(3))));
                 }
             }

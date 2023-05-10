@@ -3,15 +3,19 @@ import java.util.ArrayList;
 public class Board {
     private ArrayList<String> board;
 
-    public ArrayList<String> getBoard() { return board; }
+    public ArrayList<String> getBoard() {
+        return board;
+    }
+
     public Board() {
         board = new ArrayList<String>();
     }
 
-    public void addToBoard(String card){    //Elden tahtaya kart atmada kullanılacak
+    public void addToBoard(String card) {    //Elden tahtaya kart atmada kullanılacak
         board.add(card);
     }
-    public void addToBoard(String card1 , String card2 , String card3 , String card4){     //Oyunun başında tahtaya 4 kart açarken kullanılacak
+
+    public void addToBoard(String card1, String card2, String card3, String card4) {     //Oyunun başında tahtaya 4 kart açarken kullanılacak
         board.add(card1);
         board.add(card2);
         board.add(card3);
@@ -23,13 +27,13 @@ public class Board {
         board.clear();
     }
 
-    public void display() {   //Deck class'ındaki display methodu ile aynı
+    public void display(int value) {   //Deck class'ındaki display methodu ile aynı
         System.out.println("-THE BOARD-");
         System.out.print("BOTTOM --> [ ");
-        for(String a : board){
+        for (String a : board) {
             System.out.print(a + " ");
         }
-        System.out.print("] <-- TOP");
+        System.out.print("] <-- TOP // THE Value Of the Board = " + value);
         System.out.println();
     }
 
@@ -38,17 +42,17 @@ public class Board {
             if (board.get(board.size() - 1).substring(1).equals(board.get(board.size() - 2).substring(1))) {
                 return true;                            //Player.addtoChest() methodunda condition olarak kullanılacak
             }
-        }catch(IndexOutOfBoundsException ex) {
+        } catch (IndexOutOfBoundsException ex) {
             return false;
         }
-        if(board.get(board.size()-1).substring(1).equals("J")){
+        if (board.get(board.size() - 1).substring(1).equals("J")) {
             return true;
         }
         return false;
     }
 
     public boolean mistiCondition() {                   //Condition for mişti
-        if(board.size() == 2 && board.get(0).substring(1).equals(board.get(1).substring(1))) {
+        if (board.size() == 2 && board.get(0).substring(1).equals(board.get(1).substring(1))) {
             return true;
         }
         return false;
