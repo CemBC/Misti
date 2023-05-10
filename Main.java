@@ -139,7 +139,7 @@ public class Main {
                         String temp = player.play(index);
                         board.addToBoard(temp);
                         minder(bots, board, true);
-                        player.addToChest(board.getBoard(), board.condition());
+                        player.addToChest(board);
                         player.addScore();
                         if (board.mistiCondition() || board.condition()) {
                             if (board.mistiCondition()) {
@@ -159,7 +159,7 @@ public class Main {
                             temp = bots.get(i).play(bots.get(i).chooseACard(board, calculateBoard(board)));
                             board.addToBoard(temp);
                             minder(bots, board, true);
-                            bots.get(i).addToChest(board.getBoard(), board.condition());
+                            bots.get(i).addToChest(board);
                             bots.get(i).addScore();
                             if (board.mistiCondition() || board.condition()) {
                                 if (board.mistiCondition()) {
@@ -181,7 +181,7 @@ public class Main {
                             String temp = bots.get(i).play(bots.get(i).chooseACard(board, calculateBoard(board)));
                             board.addToBoard(temp);
                             minder(bots, board, true);
-                            bots.get(i).addToChest(board.getBoard(), board.condition());
+                            bots.get(i).addToChest(board);
                             bots.get(i).addScore();
                             if (board.mistiCondition() || board.condition()) {
                                 if (board.mistiCondition()) {

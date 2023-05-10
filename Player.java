@@ -47,8 +47,15 @@ public class Player {
         hand.add(d);
     }
 
-    public void addToChest(ArrayList<String> board, boolean condition) {             //Tahtadan zulaya kart aktarır
-        if (condition) {
+    public void addToChest(Board boardd) {//Tahtadan zulaya kart aktarır
+        ArrayList<String> board = boardd.getBoard();
+
+        if(boardd.mistiCondition()) {
+            for (int i = 0; i < 5; i++) {
+                chest.add(board.get(0));
+                chest.add(board.get(1));
+            }
+        }else if (boardd.condition()) {
             for (String a : board) {
                 chest.add(a);
             }
