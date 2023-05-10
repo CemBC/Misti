@@ -1,30 +1,11 @@
-import java.io.*;
+
 import java.util.*;
 
-import static java.util.Arrays.asList;
+
 
 public class Main {
     public static void main(String[] args) {
-        /*File f = new File("Highscore.txt");
-        if(!f.exists()) {
-            try {
-                f.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Something went wrong while creating highscore file");
-                System.exit(10);
-            }
-        }
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(("Highscore.txt")));
-            String line;
-            while((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Something went wrong while reading highscore list,terminating");
-            System.exit(11);
-        }*/
+
 
 
         System.out.println("Appropriate argument example:\n" + ">java -jar Misti.jar <numberOfPlayer> <FileName.txt> <PlayerName> <PreviousPlayerLevel> .... <VerboseMode>");
@@ -33,7 +14,7 @@ public class Main {
         Value.updateValues(args[1]);
 
         while (true) {
-            HighScore.updateHighScores();
+            //HighScore.updateHighScores();
             //----------------------------------------------
             boolean watch = true;
             Deck deck = new Deck();
@@ -234,44 +215,16 @@ public class Main {
                 z.addScore();
                 System.out.println("  "+z.getName() + " == " + z.getScore());
             }
-            /*ArrayList<Player> forTHeFile = new ArrayList<Player>();
-            for(Player b :  bots) {
-                forTHeFile.add(b);
-            }
-            if(!watch) {
-                forTHeFile.add(player);
-            }
 
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("Highscore.txt"));
-                for(Player z : forTHeFile) {
-                    writer.write(z.getName() + " " + z.getScore() + " " + z.level()+"\n");
-                }
-                writer.close();
-            }catch(IOException e) {
-                System.out.println("Something went wrong while writing highscore file, terminating");
-                System.exit(12);
-            }
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(("Highscore.txt")));
-                String line;
-                while((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-                reader.close();
-            } catch (IOException e) {
-                System.out.println("Something went wrong while reading highscore list,terminating");
-                System.exit(11);
-            }*/
            // TODO Kaçıncı olduğu oyuncuya bildirilebilir,şu an yalnızca dosyaya kaydediyor.
             //  Yüksek skor yapmışsa metot 1 ile 10 arası bir sayı döndürüyor
             //  Yüksek skor yapmamışsa metot 0 döndürüyor
-            if(!watch) {
+           /* if(!watch) {
                 HighScore.checkIfHighScore(player);
             }
             for (Player z : bots) {
                 HighScore.checkIfHighScore(z);
-            }
+            } */
 
 
 
