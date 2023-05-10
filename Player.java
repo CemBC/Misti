@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Player {
-
+    protected String expertiseLevel = "H";
     protected String name;
     protected ArrayList<String> hand;
     protected ArrayList<String> chest;
@@ -18,6 +18,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public String getExpertiseLevel() {
+        return expertiseLevel;
     }
 
     public String display(int p) { //Bot'un elini göstermesi için bir method
