@@ -31,7 +31,7 @@ public class Main {
         System.out.println(">java -jar Misti.jar 4 pointFile.txt Kaya H Ilker E Cem R Kutluhan N true");
         getArgs(args);
         Value.updateValues(args[1]);
-       // HighScore.updateHighScores();
+        HighScore.updateHighScores();
         while (true) {
             //----------------------------------------------
             boolean watch = true;
