@@ -4,8 +4,8 @@ import java.util.*;
 import static java.util.Arrays.asList;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        File f = new File("Highscore.txt");
+    public static void main(String[] args) {
+        /*File f = new File("Highscore.txt");
         if(!f.exists()) {
             try {
                 f.createNewFile();
@@ -24,15 +24,16 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Something went wrong while reading highscore list,terminating");
             System.exit(11);
-        }
+        }*/
 
 
         System.out.println("Appropriate argument example:\n" + ">java -jar Misti.jar <numberOfPlayer> <FileName.txt> <PlayerName> <PreviousPlayerLevel> .... <VerboseMode>");
         System.out.println(">java -jar Misti.jar 4 pointFile.txt Kaya H Ilker E Cem R Kutluhan N true");
         getArgs(args);
         Value.updateValues(args[1]);
-        HighScore.updateHighScores();
+       // HighScore.updateHighScores();
         while (true) {
+            HighScore.updateHighScores();
             //----------------------------------------------
             boolean watch = true;
             Deck deck = new Deck();
@@ -233,7 +234,7 @@ public class Main {
                 z.addScore();
                 System.out.println("  "+z.getName() + " == " + z.getScore());
             }
-            ArrayList<Player> forTHeFile = new ArrayList<Player>();
+            /*ArrayList<Player> forTHeFile = new ArrayList<Player>();
             for(Player b :  bots) {
                 forTHeFile.add(b);
             }
@@ -261,14 +262,16 @@ public class Main {
             } catch (IOException e) {
                 System.out.println("Something went wrong while reading highscore list,terminating");
                 System.exit(11);
-            }
-           /* // TODO Kaçıncı olduğu oyuncuya bildirilebilir,şu an yalnızca dosyaya kaydediyor.
+            }*/
+           // TODO Kaçıncı olduğu oyuncuya bildirilebilir,şu an yalnızca dosyaya kaydediyor.
             //  Yüksek skor yapmışsa metot 1 ile 10 arası bir sayı döndürüyor
             //  Yüksek skor yapmamışsa metot 0 döndürüyor
-            HighScore.checkIfHighScore(player);
+            if(!watch) {
+                HighScore.checkIfHighScore(player);
+            }
             for (Player z : bots) {
                 HighScore.checkIfHighScore(z);
-            } */
+            }
 
 
 
