@@ -18,6 +18,10 @@ public class Main {
             for (int i = 0; i < args.length; i++) {
                 if (args[i].equals("H")) {
                     watch = false;
+                    if (args[args.length-1].equals("false")){
+                        System.out.println("Warning = While playing, verbose mode must be on.\nVerbose mode is automatically opened");
+                        args[args.length-1] = "true";
+                    }
                     break;
                 }
             }
