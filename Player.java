@@ -30,7 +30,7 @@ public class Player {
         for (String a : hand) {
             temp += a + ",";
         }
-        temp += "} Score="+ score + "\t";
+        temp += "} Score=" + score + "\t";
         return temp;
     }
 
@@ -50,12 +50,12 @@ public class Player {
     public void addToChest(Board boardd) {//Tahtadan zulaya kart aktarır
         ArrayList<String> board = boardd.getBoard();
 
-        if(boardd.mistiCondition()) {
+        if (boardd.mistiCondition()) {
             for (int i = 0; i < 5; i++) {
                 chest.add(board.get(0));
                 chest.add(board.get(1));
             }
-        }else if (boardd.condition()) {
+        } else if (boardd.condition()) {
             for (String a : board) {
                 chest.add(a);
             }
@@ -91,8 +91,8 @@ public class Player {
 
     public void addScore() {
         this.score = 0;
-        for(String a : chest)
-        this.score += Value.of(a);
+        for (String a : chest)
+            this.score += Value.of(a);
     }
 
     public int getScore() {

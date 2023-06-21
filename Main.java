@@ -13,7 +13,6 @@ public class Main {
         HighScorer.read();
 
         while (true) {
-
             //----------------------------------------------
             boolean watch = true;
             Deck deck = new Deck();

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class Expert extends Player {
     private ArrayList<String> mind;  //mind of the expert bot
@@ -18,20 +19,8 @@ public class Expert extends Player {
 
                 }
             }
-            String temp = "";                    //Başkası eksi dolu tahtayı alsın diye en az atılmış kartı atacak
-            int min = Integer.MAX_VALUE;
-            for (String a : hand) {
-                int c = Collections.frequency(mind, a.substring(1));
-                if (c < min) {
-                    if (!a.substring(1).equals("J")) {
-                        min = c;
-                        temp = a;
-                    }
-
-
-                }
-            }
-            return hand.indexOf(temp);
+            Random rd = new Random(System.currentTimeMillis());
+            return rd.nextInt(0, hand.size());
         }
         for (String a : hand) {      //Eğer elinde alabilecek bir kart varsa onu atıyor
             try {
